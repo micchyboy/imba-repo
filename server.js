@@ -623,6 +623,8 @@ app.use(express.static(__dirname + '/public'));
  res.json(200, { "hello": req.params.name });
  });
  */
-app.listen(5501, function () {
+
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
     console.log("ready kapitan!");
 });
