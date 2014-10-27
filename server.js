@@ -4,7 +4,7 @@
 
 var express = require('express');
 var bcrypt = require('bcryptjs');
-var Q = require('Q');
+var Q = require('q');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
