@@ -62,7 +62,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         }
     })
     .controller("sportsStoreCtrl", function ($scope, $http, $location, $anchorScroll, urls,
-                                             $timeout, anchorSmoothScroll, authService, $routeParams) {
+                                             $timeout, anchorSmoothScroll, authService, $routeParams, $route) {
         $scope.data = {
         };
         $scope.util = {};
@@ -137,6 +137,10 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
             $location.path("/" + $scope.data.user.username  + path);
+        }
+
+        $scope.reload = function () {
+            $route.reload();
         }
 
         $scope.gotoElement = function (eID) {

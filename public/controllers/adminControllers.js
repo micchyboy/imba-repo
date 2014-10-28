@@ -44,8 +44,7 @@ angular.module("sportsStore")
             });
         }
     })
-    .controller("editorCtrl", function ($scope, createUrl, $http, $upload, uploadUrl, deleteImageUrl, $timeout,
-                                        $q, dataHandler, updateUrl) {
+    .controller("editorCtrl", function ($scope, createUrl, $http, $upload, uploadUrl, deleteImageUrl, $timeout, $q, dataHandler, updateUrl) {
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.imageDescriptions = [];
         initializeCurrentProduct();
@@ -325,9 +324,10 @@ angular.module("sportsStore")
                 }
 
                 $(".create-success").slideDown();
-                $timeout(function () {
+                var cleanUpVar = $scope.$on("$routeChangeStart", function () {
                     $(".create-success").slideUp();
-                }, 3000);
+                    cleanUpVar();
+                })
 //                $scope.getProducts();
                 $scope.util.currentProduct = {};
 

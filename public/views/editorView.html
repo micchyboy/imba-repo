@@ -108,7 +108,7 @@
 
 <div class="details-main">
     <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="panel panel-info required-details-form">
+        <div class="panel panel-info required-details-form" ng-class="{'panel-danger': detailsForm.$error.required}">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     Required Details
@@ -245,7 +245,8 @@
 
     <div class="col-sm-12 col-md-5 col-lg-5">
 
-        <div class="panel panel-info upload-form">
+        <div class="panel panel-info upload-form"
+             ng-class="{'panel-danger': !detailsForm.$error.required && !containsImages() || detailsForm.$error.primaryImage}">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     Upload Images
@@ -295,7 +296,8 @@
 
 <div class="col-sm-12 col-md-12 col-lg-12" ng-show="util.mode == 'update'">
 
-    <div class="panel panel-info upload-form">
+    <div class="panel panel-info upload-form"
+         ng-class="{'panel-danger': !detailsForm.$error.required && detailsForm.$error.primaryImage}">
         <div class="panel-heading">
             <h3 class="panel-title">
                 Edit Images
