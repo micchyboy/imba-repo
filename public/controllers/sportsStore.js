@@ -35,27 +35,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
     .run(function ($templateCache, $http) {
         $http.get('/views/adminLogin.html', {cache: $templateCache});
     })
-//    .constant("dataUrl", "http://localhost:3000/jethro/products")
-    .constant("authUrl", "http://localhost:3000/api/login")
-    .constant("logOutUrl", "http://localhost:3000/api/logout")
-    .constant("signUpUrl", "http://localhost:3000/api/signup")
-    .constant("createUrl", "http://localhost:3000/api/create")
-    .constant("deleteUrl", "http://localhost:3000/api/delete")
-    .constant("deleteImageUrl", "http://localhost:3000/api/delete_image")
-    .constant("updateUrl", "http://localhost:3000/api/update")
-    .constant("uploadUrl", "http://localhost:3000/api/upload")
-    .constant("primaryImageUrl", "http://localhost:3000/api/primary_image")
-    /*.constant("dataUrl", "http://imba-app.herokuapp.com/jethro/products")
-     .constant("authUrl", "http://imba-app.herokuapp.com/login")
-     .constant("logOutUrl", "http://imba-app.herokuapp.com/logout")
-     .constant("signUpUrl", "http://imba-app.herokuapp.com/signup")
-     .constant("createUrl", "http://imba-app.herokuapp.com/create")
-     .constant("deleteUrl", "http://imba-app.herokuapp.com/delete")
-     .constant("deleteImageUrl", "http://imba-app.herokuapp.com/delete_image")
-     .constant("updateUrl", "http://imba-app.herokuapp.com/update")
-     .constant("uploadUrl", "http://imba-app.herokuapp.com/upload")
-     .constant("ordersUrl", "http://imba-app.herokuapp.com/orders")
-     .constant("primaryImageUrl", "http://imba-app.herokuapp.com/primary_image")*/
+
     .config(function ($locationProvider) {
         if (window.history && history.pushState) {
             $locationProvider.html5Mode(true);

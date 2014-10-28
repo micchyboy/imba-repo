@@ -1,5 +1,5 @@
 angular.module("sportsStore")
-    .controller("authCtrl", function ($scope, $http, $location, authUrl, signUpUrl, authService, $timeout) {
+    .controller("authCtrl", function ($scope, $http, $location, urls, authService, $timeout) {
         $scope.authenticate = function (user, pass) {
             authService.authenticateUser($scope, user, pass)
                 .then(function (data) {
@@ -21,7 +21,7 @@ angular.module("sportsStore")
             $scope.accountCreated = false;
             console.log("Signing up!")
             $http({
-                url: signUpUrl,
+                url: urls.signUpUrl,
                 method: "POST",
                 data: {
                     username: $scope.credentials[0],
@@ -44,7 +44,8 @@ angular.module("sportsStore")
             });
         }
     })
-    .controller("editorCtrl", function ($scope, createUrl, $http, $upload, uploadUrl, deleteImageUrl, $timeout, $q, dataHandler, updateUrl) {
+    .controller("editorCtrl", function ($scope, urls, $http, $upload,
+                                        $timeout, $q, dataHandler) {
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.imageDescriptions = [];
         initializeCurrentProduct();
@@ -182,7 +183,7 @@ angular.module("sportsStore")
 
         $scope.updateProduct = function () {
             $http({
-                url: updateUrl,
+                url: urls.updateUrl,
                 method: "PUT",
                 data: {
                     user: $scope.data.user,
@@ -261,7 +262,7 @@ angular.module("sportsStore")
         $scope.saveProduct = function () {
 
             $http({
-                url: createUrl,
+                url: urls.createUrl,
                 method: "POST",
                 data: {
                     user: $scope.data.user,
@@ -386,7 +387,7 @@ angular.module("sportsStore")
             $scope.errorMsg = null;
             //$upload.upload()
             $scope.upload[index] = $upload.upload({
-                url: uploadUrl,
+                url: urls.uploadUrl,
                 method: "POST",
 //                headers: {'my-header': 'my-header-value'},
                 data: {
@@ -429,7 +430,7 @@ angular.module("sportsStore")
 
         $scope.deleteProductImage = function (item) {
             $http({
-                url: deleteImageUrl,
+                url: urls.deleteImageUrl,
                 method: "POST",
                 data: {
                     user: $scope.data.user,

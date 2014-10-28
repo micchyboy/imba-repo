@@ -5,7 +5,7 @@ angular.module("sportsStore")
         $anchorScrollProvider.disableAutoScrolling();
     })
     .controller("productListCtrl", function ($scope, $filter, productListActiveClass, productListPageCount,
-                                             $http, deleteUrl, primaryImageUrl) {
+                                             $http, urls) {
         var selectedCategory = null;
         var minimumPrice = 0;
         var maximumPrice = 0;
@@ -80,7 +80,7 @@ angular.module("sportsStore")
 
         $scope.deleteProduct = function (item) {
             $http({
-                url: deleteUrl,
+                url: urls.deleteUrl,
                 method: "POST",
                 data: {
                     user: $scope.data.user,
@@ -100,7 +100,7 @@ angular.module("sportsStore")
         $scope.savePrimaryImage = function (productId, filename) {
             console.log("Calling save primary image id: " + productId);
             return $http({
-                url: primaryImageUrl,
+                url: urls.primaryImageUrl,
                 method: "POST",
                 data: {
                     user: $scope.data.user,

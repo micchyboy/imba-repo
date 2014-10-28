@@ -18,7 +18,7 @@ angular.module("sportsStore")
                 localStorage.clear();
             }
         };
-    }).factory('authService', function ($http, sessionStorage, authUrl, logOutUrl,
+    }).factory('authService', function ($http, sessionStorage, urls,
                                         $location, $q, $rootScope) {
         //TODO: Try using $cookie or $cookieStore services
 
@@ -43,7 +43,7 @@ angular.module("sportsStore")
                 console.log("Previously authenticated? " + (isAuthenticated));
                 if (!isAuthenticated) {
                     $http({
-                        url: authUrl,
+                        url: urls.authUrl,
                         method: "POST",
                         data: { username: username, password: password }
                     }).success(function (data) {
@@ -68,7 +68,7 @@ angular.module("sportsStore")
             },
 
             logOut: function(){
-                return $http.get(logOutUrl);
+                return $http.get(urls.logOutUrl);
             }
         };
     });

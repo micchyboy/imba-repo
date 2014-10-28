@@ -61,11 +61,11 @@ passport.use(new passportLocal.Strategy(function (username, password, done) {
                 done(null, data)
             }
             else {
-                done(new Error("Wrong password"));
+                done(new Error("Wrong password").message);
             }
         }
         else if (err) {
-            done(err, null);
+            done(err.message, null);
         }
         else {
             done(null, null);
@@ -608,7 +608,7 @@ app.post('/api/primary_image', function (req, res) {
     )
 });
 
-app.get('/:username/products', function (req, res) {
+app.get('/api/products/:username', function (req, res) {
     console.log("Getting products of " + req.params.username);
     mongoose.model('Users').findOne(
         {
