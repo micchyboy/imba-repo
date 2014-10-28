@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html ng-app="sportsStore">
+<head>
+<title>Real Estate App</title>
+
+<link href="/lib/bootstrap.css" rel="stylesheet"/>
+
+<script src="/lib/ngmodules/angular-file-upload-shim.min.js"></script>
+<script src="/lib/angular.js"></script>
+<script src="/lib/ngmodules/angular-file-upload.min.js"></script>
+<!--<link href="bootstrap-theme.css" rel="stylesheet"/>-->
+<script src="/lib/jquery-1.10.2.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<script src="/lib/ngmodules/angular-route.js"></script>
+<script src="/lib/ngmodules/angular-animate.js"></script>
+
+<script src="/controllers/sportsStore.js"></script>
+<script src="/controllers/adminControllers.js"></script>
+<script src="/controllers/productListControllers.js"></script>
+<script src="/controllers/productDetailsController.js"></script>
+
+<script src="/services/smoothScrollService.js"></script>
+<script src="/services/sessionStorageService.js"></script>
+<script src="/services/stateSaveService.js"></script>
+<script src="/services/urlService.js"></script>
+
+<script src="/filters/customFilters.js"></script>
+<style>
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+.header-placeholder {
+    height: 54px
+}
+
+.bs-header {
+    padding: 30px 15px 40px;
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+    color: #cdbfe3;
+    /*background-color: #e7e7e7;*/
+    /*background-image: url(header.png);*/
+}
+
+.navbar-inverse {
+    background: linear-gradient(#222222, #444444);
+
+    border-color: #ffffff;
+}
+
+.navbar-nav {
+    color: #ffffff;
+}
+
+.navbar-fixed-top {
+    height: 55px;
+    /*background: #53b50a;*/
+}
+
+#search_filter_container {
+    -webkit-box-shadow: 2px 0 3px #777777;
+    -moz-box-shadow: 2px 0 3px #777777;
+    box-shadow: 2px 0 3px #777777;
+    min-height: 55px;
+    margin: 0;
+    width: 100%;
+    background: #e8eaf0;
+    position: relative;
+    z-index: 100;
+}
+
+#wrap {
+    min-height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+
+.footer {
+    text-align: center;
+    padding: 0 0 24px 0;
+    color: #ffffff;
+    /*margin-top: 70px;*/
+    border-top: 1px solid #e5e5e5;
+    margin-top: 60px;
+    background: linear-gradient(#222222, #444444);
+    /*background-image: url(http://subtlepatterns.com/patterns/dark_wall.png);*/
+}
+
+.footer-headings {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.footer-details {
+    font-size: 14px;
+}
+
+/*.user-info h2 {
+    font: 700 25px/20px 'Lato', sans-serif;
+    color: #ffffff;
+    text-align: right;
+    letter-spacing: 2px;
+    padding: 7px 8px 0;
+    display: inline-block;
+    position: relative;
+}*/
+
+.navbar-info {
+    width: 100%;
+    display: inline;
+    /*margin: 0px 0 0 -35%;*/
+    /*left: 50%;*/
+}
+
+.user-info > * {
+    height: 50px;
+    color: #ffffff;
+    padding: 10px 12px;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.user-misc a {
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    border: 0;
+}
+
+@media (max-width: 423px) {
+    .user-name {
+        font-size: 16px;
+        width: 50% !important;
+    }
+
+    .user-details {
+        font-size: 14px;
+        width: 50% !important;
+    }
+
+    .user-details img {
+        height: 14px;
+        width: 20px;
+    }
+
+    .user-misc {
+        display: none;
+    }
+
+    .trademark-icon {
+        display: none;
+    }
+
+    .navigation, .credentials-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 424px) and (max-width: 517px) {
+    .user-info .user-name {
+        font-size: 18px;
+        width: 50% !important;
+    }
+
+    .user-details {
+        font-size: 14px;
+        width: 45% !important;
+    }
+
+    .user-details img {
+        height: 14px;
+        width: 20px;
+    }
+
+    .user-misc {
+        display: none;
+    }
+
+    /*.location-finder {
+        width: 130px !important;
+    }*/
+
+    .trademark-icon {
+        display: none;
+    }
+
+    .navigation, .credentials-nav {
+        display: none;
+    }
+
+}
+
+@media (min-width: 518px) and (max-width: 767px) {
+    .user-info .user-name {
+        font-size: 20px;
+    }
+
+    .user-details {
+        font-size: 12px;
+    }
+
+    /*.user-details img {
+        height: 20px;
+        width: 26px;
+    }*/
+    .user-misc {
+        display: none;
+    }
+
+    .trademark-icon {
+        display: none;
+    }
+
+    .navigation, .credentials-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .user-misc {
+        width: 15% !important;
+    }
+
+    .user-details {
+        font-size: 18px;
+    }
+
+    .navigation, .credentials-nav {
+        display: none;
+    }
+
+    .nav-drop-down, .cred-nav-drop-down {
+        display: inline;
+    }
+}
+
+@media (min-width: 992px) {
+    .user-details {
+        font-size: 24px;
+    }
+
+    .nav-drop-down, .cred-nav-drop-down {
+        display: none;
+    }
+}
+
+.vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.highlighted {
+    color: blue;
+}
+
+.pointed {
+    cursor: pointer;
+}
+
+/*For Google Scrollbar*/
+/* ::-webkit-scrollbar
+ {
+     width: 12px;  *//* for vertical scrollbars *//*
+     height: 12px; *//* for horizontal scrollbars *//*
+ }
+
+ ::-webkit-scrollbar-track
+ {
+     background: rgba(0, 0, 0, 0.1);
+ }
+
+ ::-webkit-scrollbar-thumb
+ {
+     background: rgba(0, 0, 0, 0.5);
+ }*/
+
+.input-control {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.user-button {
+    width: 80px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-clip: padding-box;
+    padding: 7px 14px;
+}
+
+.login-success, .logout-success, .create-success, .update-success, .signup-success{
+    margin-bottom: 2px;
+    display: none;
+}
+
+
+
+/*for sliding content*/
+.slide {
+    position: relative;
+}
+
+.slide.ng-leave, .slide.ng-enter {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -ms-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+    position:absolute;
+    left: 0;
+    right: 0;
+}
+
+.slide.left.ng-enter,
+.slide.right.ng-leave.ng-leave-active {
+    left: 100%;
+    opacity: 0;
+}
+
+.slide.left.ng-enter.ng-enter-active,
+.slide.left.ng-leave,
+.slide.right.ng-enter.ng-enter-active,
+.slide.right.ng-leave {
+    left:0;
+    opacity: 1;
+}
+
+.slide.left.ng-leave.ng-leave-active,
+.slide.right.ng-enter {
+    left: -100%;
+    opacity: 0;
+}
+
+
+</style>
+</head>
+<body ng-controller="sportsStoreCtrl">
+<div id="wrap">
+
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="container user-info">
+            <div class="user-name pull-left">
+                <img src="/images/icons/home.png" height="40px" width="40px" class="trademark-icon">
+
+                <span> Real Estate App </span>
+            </div>
+
+
+            <div class="user-details pull-right">
+                <div>
+                    <!--<img src="/images/icons/call.png" height="24px" width="30px">-->
+                    <span style="font-size: 14px">For inquiries:</span>
+                    <span>0928.210.5990</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="header-placeholder"></div>
+
+    <div ng-controller="productListCtrl">
+        <div id="search_filter_container">
+
+            <div>
+                <form name="myForm"
+                      novalidate
+                      class="form-inline" style="padding-top: 10px; padding-left: 30px">
+
+                    <div>
+                    <span ng-show="isProduct()">
+                        <select ng-model="searchData.location"
+                                ng-options="item for item in data.products  | orderBy:'city' | unique:'city'"
+                                class="input-control"
+                                style="width: 130px;"
+                                ng-click="selectCategory(searchData.location)">
+                            <option value="">
+                                Search All
+                            </option>
+                        </select>
+
+                        <input name="minPrice" type="text" ng-model="searchData.minPrice" class="input-control"
+                               style="width: 93px;" placeholder="Min. Price"
+                               ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
+                        <input name="maxPrice" type="text" ng-model="searchData.maxPrice" class="input-control"
+                               style="width: 93px;" placeholder="Max. Price"
+                               ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
+
+                        <!--<span style="font-weight: bold">Sort by:</span>-->
+                        <select ng-model="searchData.criteria"
+                                ng-options="item.value as item.criteria for item in util.sortBy"
+                                class="input-control"
+                                style="width: 90px;"
+                                ng-click="sorter(searchData.criteria)">
+                        </select>
+                    </span>
+
+                        <div style="width: 50px" class="pull-right">
+                            &nbsp;
+                        </div>
+
+
+                        <credentials-form ng-if="!isAuthenticated()" class="credentials-nav">
+                            <button type="button" class="input-control pull-right user-button"
+                                    style="background: linear-gradient(#3acb9a, #006600)">
+                                Sign Up
+                            </button>
+
+                            <button type="button" class="input-control pull-right user-button"
+                                    style="background: linear-gradient(#227dda, #000088);">
+                                Log In
+                            </button>
+                        </credentials-form>
+
+                        <credentials-form ng-if="!isAuthenticated()" class="btn-group pull-right cred-nav-drop-down">
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a>Log In</a></li>
+                                <li><a>Sign Up</a></li>
+                            </ul>
+                        </credentials-form>
+
+
+
+                    <span ng-if="isAuthenticated()" class="navigation">
+                        <button type="button" class="input-control pull-right user-button"
+                                ng-click="logout()"
+                                style="background: linear-gradient(#c12e2a, #880000);">
+                            Logout
+                        </button>
+                        <button type="button" class="input-control pull-right user-button"
+                                ng-click="showProduct();"
+                                style="background: linear-gradient(#3acb9a, #006600)">
+                            List
+                        </button>
+
+                        <button type="button" class="input-control pull-right user-button"
+                                tooltips="{{'You have no product. Click Create button to add one.'}}"
+                                showtip="{{hasNoProduct()}}"
+                                ng-click="createProduct();"
+                                style="background: linear-gradient(#227dda, #000088);">
+                            Create
+                        </button>
+                    </span>
+
+
+                        <div ng-if="isAuthenticated()" class="btn-group pull-right nav-drop-down">
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="createProduct();">Create</a></li>
+                                <li><a ng-click="showProduct();">List</a></li>
+                                <li><a ng-click="logout()">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" ng-show="data.error">
+            Error ({{data.error}}). The product data was not loaded.
+            <a href="/views/app.html" class="alert-link">Click here to try again</a>
+        </div>
+
+        <div class="alert alert-info login-success">
+            You have successfully logged in!
+        </div>
+
+        <div class="alert alert-danger logout-success">
+            You successfully logged out!
+        </div>
+
+        <div class="alert alert-success signup-success">
+            You have successfully signed up! You can now log in with your new account.
+        </div>
+
+        <div class="alert alert-success create-success">
+            You have successfully created a new listing!
+            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the added listing</a>
+            or
+            <a class="pointed" ng-click="reload();" style="font-weight: bold">Click here to create a new listing</a>
+        </div>
+
+        <div class="alert alert-success update-success">
+            You successfully updated the listing!
+            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the updated listing</a>
+        </div>
+        <!--<ng-view/>-->
+
+        <div role="main">
+            <div ng-view ng-class="{slide: hash != 'details', left: isDownwards, right: !isDownwards}"></div>
+        </div>
+
+    </div>
+</div>
+
+<div ng-include="'/views/modalTemplate.html'"></div>
+
+
+</body>
+<footer class="footer">
+    <div>
+        <h1 class="footer-headings">Contact Details:</h1>
+        <span class="footer-details">0928-210-5990<br>
+            jethro.estrada@yahoo.com</span>
+    </div>
+</footer>
+</html>
