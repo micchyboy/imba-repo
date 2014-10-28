@@ -10,7 +10,7 @@ angular.module("sportsStore")
                     }, 3000);
                     $scope.data.user = data;
 
-                    $scope.redirectPage("");
+                    $scope.showProduct();
                 },
                 function (error) {
                     $scope.authenticationError = error;

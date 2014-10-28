@@ -190,6 +190,10 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             return gallery.replace(galleryPath, "/images/thumbnails");
         }
 
+        $scope.hasNoProduct = function(){
+            return $scope.data.products && $scope.data.products.length == 0
+                && $scope.util.mode == 'product' && $scope.isUserOwned();
+        }
 
         //for sliding content
         var oldLocation = '';
@@ -327,7 +331,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 $elem.attr("data-original-title", $scope.tooltips);
                 $elem.addClass("tool");
                 $($elem[0]).tooltip({
-                    placement : 'bottom',
+                    placement : 'left',
                     trigger: 'manual'
                 });
                 $attrs.$observe('showtip', function() {
