@@ -9,6 +9,8 @@ angular.module("sportsStore")
                         $(".login-success").slideUp();
                     }, 3000);
                     $scope.data.user = data;
+
+                    $scope.redirectPage("");
                 },
                 function (error) {
                     $scope.authenticationError = error;

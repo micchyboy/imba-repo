@@ -136,7 +136,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
-            $location.path("/" + $routeParams["username"]  + path);
+            $location.path("/" + $scope.data.user.username  + path);
         }
 
         $scope.gotoElement = function (eID) {
@@ -155,6 +155,13 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             }
             return false;
         };
+
+        $scope.isUserOwned = function(){
+            if (authService.getData("isAuthenticated") == true) {
+                return $routeParams["username"] ? $routeParams["username"] == $scope.data.user.username : false;
+            }
+            return false;
+        }
 
         $scope.isProduct = function () {
             var mode = $scope.util.mode;

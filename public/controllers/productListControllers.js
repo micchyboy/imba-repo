@@ -53,6 +53,7 @@ angular.module("sportsStore")
 
         $scope.showProduct = function () {
             $scope.util.mode = 'product';
+            $scope.util.currentProduct = {};
             $scope.redirectPage("");
         }
 

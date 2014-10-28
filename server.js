@@ -135,6 +135,10 @@ app.get('/:username', function (req, res) {
     res.sendFile(__dirname + '/public/views/app.html');
 });
 
+app.get('/', function(req, res){
+//    res.redirect("/views/homePage.html");
+    res.sendFile(__dirname + '/public/views/homePage.html');
+})
 
 
 

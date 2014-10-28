@@ -186,6 +186,8 @@ select, a {
     border-radius: 15px;
     background-color: white;
     margin: 0 0;
+    box-shadow: 2px 2px 1px darkgray;
+    margin-top: 5px !important;
 }
 
 .hovered {
@@ -195,24 +197,20 @@ select, a {
     box-shadow: 0 0 20px #222222;
 }
 
-#main-container {
-    background-color: rgba(56, 58, 56, 0.100);
-    /*background-image: url(http://subtlepatterns.com/patterns/dark_wall.png);*/
-    /*background: radial-gradient(#a1a1a1, #008800);*/
-    /*background: linear-gradient(to bottom right, #a1a1a1 , #444444);*/
-    z-index: -1;
-    /*background-color: #222222;*/
-}
 
 .display-none {
     display: none;
 }
 
+#products-container {
+    border: 0;
+    min-height: 600px;
+    background-color: rgba(56, 58, 56, 0.100);
+}
 </style>
 
-<div class="panel panel-default row"
-     ng-hide="data.error"
-     id="main-container">
+<div class="panel panel-default row" id="products-container"
+     ng-hide="data.error">
 
 
     <div class="container">
@@ -237,7 +235,7 @@ select, a {
                             <span class="index">{{$index + 1}}</span>
                             <span class="location-name" ng-class="{highlighted: hover}">{{item.city}}</span>
 
-                            <div id="item-options" ng-if="isAuthenticated()">
+                            <div id="item-options" ng-if="isUserOwned()">
                                 <div>
                                     <input type="image" src="/images/icons/edit-icon.png"
                                            ng-click="editProduct(item);"/>
@@ -247,11 +245,11 @@ select, a {
                                            delete-product-confirmation/>
                                 </div>
                             </div>
-                            <div id="adder">
-                                <div class="pill-section-figure">
-                                    {{item.updatedAt | daysBetween}}
+                        </div>
+                        <div id="adder">
+                            <div class="pill-section-figure">
+                                {{item.updatedAt | daysBetween}}
 
-                                </div>
                             </div>
                         </div>
                         <div class="pill">
