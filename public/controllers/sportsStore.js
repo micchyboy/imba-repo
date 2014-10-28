@@ -9,63 +9,66 @@ var resolve = {
 
 angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angularFileUpload"])
     .config(function ($routeProvider) {
-        $routeProvider.when("/products", {
+        $routeProvider.when("/:username", {
             templateUrl: "/views/productList.html",
             resolve: resolve
         });
         /*$routeProvider.when("/details", {
          templateUrl: "/views/productDetails.html"
          });*/
-        $routeProvider.when("/editor", {
+        $routeProvider.when("/:username/editor", {
             templateUrl: "/views/editorView.html",
             resolve: resolve
         });
-        $routeProvider.when("/create", {
+        $routeProvider.when("/:username/create", {
             templateUrl: "/views/editorView.html",
             resolve: resolve
         });
-        $routeProvider.otherwise({
-            redirectTo: "/products"
-        });
+        /*$routeProvider.when("/home", {
+            templateUrl: "/views/homePage.html",
+            resolve: resolve
+        });*/
+        /*$routeProvider.otherwise({
+            redirectTo: "/productss/:username"
+        });*/
     })
     .run(function ($templateCache, $http) {
         $http.get('/views/adminLogin.html', {cache: $templateCache});
     })
-    /*.constant("domain", "http://localhost:3000")
-    .constant("dataUrl", "http://localhost:3000/jethro/products")
-    .constant("authUrl", "http://localhost:3000/login")
-    .constant("logOutUrl", "http://localhost:3000/logout")
-    .constant("signUpUrl", "http://localhost:3000/signup")
-    .constant("createUrl", "http://localhost:3000/create")
-    .constant("deleteUrl", "http://localhost:3000/delete")
-    .constant("deleteImageUrl", "http://localhost:3000/delete_image")
-    .constant("updateUrl", "http://localhost:3000/update")
-    .constant("uploadUrl", "http://localhost:3000/upload")
-    .constant("ordersUrl", "http://localhost:3000/orders")
-    .constant("primaryImageUrl", "http://localhost:3000/primary_image")*/
-    .constant("domain", "http://imba-app.herokuapp.com")
-    .constant("dataUrl", "http://imba-app.herokuapp.com/jethro/products")
-    .constant("authUrl", "http://imba-app.herokuapp.com/login")
-    .constant("logOutUrl", "http://imba-app.herokuapp.com/logout")
-    .constant("signUpUrl", "http://imba-app.herokuapp.com/signup")
-    .constant("createUrl", "http://imba-app.herokuapp.com/create")
-    .constant("deleteUrl", "http://imba-app.herokuapp.com/delete")
-    .constant("deleteImageUrl", "http://imba-app.herokuapp.com/delete_image")
-    .constant("updateUrl", "http://imba-app.herokuapp.com/update")
-    .constant("uploadUrl", "http://imba-app.herokuapp.com/upload")
-    .constant("ordersUrl", "http://imba-app.herokuapp.com/orders")
-    .constant("primaryImageUrl", "http://imba-app.herokuapp.com/primary_image")
+//    .constant("dataUrl", "http://localhost:3000/jethro/products")
+    .constant("authUrl", "http://localhost:3000/api/login")
+    .constant("logOutUrl", "http://localhost:3000/api/logout")
+    .constant("signUpUrl", "http://localhost:3000/api/signup")
+    .constant("createUrl", "http://localhost:3000/api/create")
+    .constant("deleteUrl", "http://localhost:3000/api/delete")
+    .constant("deleteImageUrl", "http://localhost:3000/api/delete_image")
+    .constant("updateUrl", "http://localhost:3000/api/update")
+    .constant("uploadUrl", "http://localhost:3000/api/upload")
+    .constant("primaryImageUrl", "http://localhost:3000/api/primary_image")
+    /*.constant("dataUrl", "http://imba-app.herokuapp.com/jethro/products")
+     .constant("authUrl", "http://imba-app.herokuapp.com/login")
+     .constant("logOutUrl", "http://imba-app.herokuapp.com/logout")
+     .constant("signUpUrl", "http://imba-app.herokuapp.com/signup")
+     .constant("createUrl", "http://imba-app.herokuapp.com/create")
+     .constant("deleteUrl", "http://imba-app.herokuapp.com/delete")
+     .constant("deleteImageUrl", "http://imba-app.herokuapp.com/delete_image")
+     .constant("updateUrl", "http://imba-app.herokuapp.com/update")
+     .constant("uploadUrl", "http://imba-app.herokuapp.com/upload")
+     .constant("ordersUrl", "http://imba-app.herokuapp.com/orders")
+     .constant("primaryImageUrl", "http://imba-app.herokuapp.com/primary_image")*/
     .config(function ($locationProvider) {
         if (window.history && history.pushState) {
             $locationProvider.html5Mode(true);
         }
     })
-    .controller("sportsStoreCtrl", function ($scope, $http, $location, dataUrl, $anchorScroll,
-                                             $timeout, anchorSmoothScroll, authService) {
+    .controller("sportsStoreCtrl", function ($scope, $http, $location, $anchorScroll, urls,
+                                             $timeout, anchorSmoothScroll, authService, $routeParams) {
         $scope.data = {
         };
         $scope.util = {};
         $scope.util.currentProduct = {};
+
+        $scope.util.mode = 'product';
 
         $scope.util.sortBy = [
             {criteria: "Time+", value: "-updatedAt"},
@@ -75,18 +78,40 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         ];
         $scope.util.sortBy.default = "-updatedAt";
 
+        /*$scope.$on("$routeChangeSuccess", function () {
+         console.log("Route change success! Main");
+         var isAuthenticated = authService.getData("isAuthenticated");
+         console.log("Is authenticated? " + (isAuthenticated))
+         if (!isAuthenticated) {
+         console.log("Redirect to login page..")
+         $location.path("/home");
+         }
+         else {
+         $scope.data.user = authService.getData("user");
+         }
+         });*/
+        $scope.getProducts = function () {
+            $http.get(urls.getDataUrl($routeParams["username"]))
+                .success(function (data) {
+                    console.log(data.products);
+                    $scope.data.products = data.products;
+                })
+                .error(function (error) {
+                    $scope.data.error = error;
+                });
+        }
+
         $scope.$on("$routeChangeSuccess", function () {
-            console.log("Route change success! Main");
+//            alert("Username is: " + $routeParams["username"]);
             var isAuthenticated = authService.getData("isAuthenticated");
             console.log("Is authenticated? " + (isAuthenticated))
-            if (!isAuthenticated) {
-                console.log("Redirect to login page..")
-                $location.path("/products");
-            }
-            else {
+            if (isAuthenticated) {
                 $scope.data.user = authService.getData("user");
             }
-        });
+
+            $scope.getProducts();
+        })
+
 
         $scope.logout = function () {
             console.log("Logging out..")
@@ -101,30 +126,17 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                     $(".logout-success").slideUp();
                 }, 3000);
 
-                $location.path("/");
+                $scope.redirectPage("");
             }, function (error) {
                 console.log("Error logging out..");
                 $scope.authenticationError = error;
             });
         }
 
-        $scope.getProducts = function () {
-            $http.get(dataUrl)
-                .success(function (data) {
-                    for (var i in data) {
-                        console.log(i + ": " + data[i]);
-                    }
-                    console.log(data.products);
-                    $scope.data.products = data.products;
-                })
-                .error(function (error) {
-                    $scope.data.error = error;
-                });
-        }
 
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
-            $location.path(path);
+            $location.path("/" + $routeParams["username"]  + path);
         }
 
         $scope.gotoElement = function (eID) {
@@ -145,8 +157,8 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         };
 
         $scope.isProduct = function () {
-            var path = $location.path();
-            if (path == "/products") {
+            var mode = $scope.util.mode;
+            if (mode == "product") {
                 return true
             }
             return false;
@@ -167,7 +179,6 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             return gallery.replace(galleryPath, "/images/thumbnails");
         }
 
-        $scope.getProducts();
 
         //for sliding content
         var oldLocation = '';

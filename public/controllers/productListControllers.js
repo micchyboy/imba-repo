@@ -15,6 +15,7 @@ angular.module("sportsStore")
 
         $scope.selectedPage = 1;
         $scope.pageSize = productListPageCount;
+
         $scope.selectCategory = function (newCategory) {
             selectedCategory = newCategory;
             $scope.selectedPage = 1;
@@ -48,6 +49,11 @@ angular.module("sportsStore")
             $scope.util.currentProduct = item;
 
 //            $scope.gotoElement('main');
+        }
+
+        $scope.showProduct = function () {
+            $scope.util.mode = 'product';
+            $scope.redirectPage("");
         }
 
         $scope.editProduct = function (item) {

@@ -35,6 +35,8 @@ app.use(function (req, res, next) {
 });
 
 //app.use(busboy());
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -45,6 +47,8 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.static(__dirname + '/public'));
 
 passport.use(new passportLocal.Strategy(function (username, password, done) {
     console.log("Passport Local Strategy commence")
@@ -93,7 +97,7 @@ passport.deserializeUser(function (username, done) {
  res.render('login');
  });*/
 
-app.post('/login',
+app.post('/api/login',
     passport.authenticate('local'),
     function (req, res) {
 //        console.log(req.headers)
@@ -107,7 +111,7 @@ app.post('/login',
         })
     });
 
-app.get('/logout', function (req, res) {
+app.get('/api/logout', function (req, res) {
     console.log("Logging out..")
     req.session.destroy(function (err) {
         console.log("Destroyed session.");
@@ -122,13 +126,19 @@ app.get('/logout', function (req, res) {
     });
 });
 
-app.get('/', function (req, res) {
-    console.log("Routing to main page..")
-    res.redirect('/app.html');
+/*app.get('/:username', function(req, res) {
+    res.redirect('/');
+});*/
+
+app.get('/:username', function (req, res) {
+    console.log("Routing to main page .." + " username: " + req.params.username);
+    res.sendFile(__dirname + '/public/views/app.html');
 });
 
 
-app.post('/signup', function (req, res) {
+
+
+app.post('/api/signup', function (req, res) {
     console.log("Sign UP!!")
     var deferred = Q.defer();
 
@@ -185,7 +195,7 @@ app.post('/signup', function (req, res) {
     });
 });
 
-app.put('/update', function (req, res) {
+app.put('/api/update', function (req, res) {
 
     console.log("Updating product..")
     console.log("My User object: " + req.body.user.username);
@@ -225,7 +235,7 @@ app.put('/update', function (req, res) {
 });
 
 
-app.post('/create', function (req, res) {
+app.post('/api/create', function (req, res) {
 //        console.log(req.headers)
     console.log("Creating product..")
     // If this function gets called, authentication was successful.
@@ -277,7 +287,7 @@ app.post('/create', function (req, res) {
 });
 
 
-app.post('/delete', function (req, res) {
+app.post('/api/delete', function (req, res) {
 
     console.log("Deleting product..")
     console.log("My User object: " + req.body.user.username);
@@ -340,7 +350,7 @@ app.post('/delete', function (req, res) {
     });
 });
 
-app.post('/delete_image', function (req, res) {
+app.post('/api/delete_image', function (req, res) {
 
     console.log("Deleting image..")
     console.log("My User object: " + req.body.user.username);
@@ -419,7 +429,7 @@ app.post('/delete_image', function (req, res) {
 
 
 
-app.post('/upload', function (req, res) {
+app.post('/api/upload', function (req, res) {
     var busDeferred = Q.defer();
     var fsDeferred = Q.defer();
 
@@ -569,7 +579,7 @@ app.post('/upload', function (req, res) {
     })
 });
 
-app.post('/primary_image', function (req, res) {
+app.post('/api/primary_image', function (req, res) {
     var primaryImage = '/images/thumbnails/' + req.body.user.username + "/" + req.body._id + "/" + req.body.primaryImage;
     mongoose.model('Users').update(
         {
@@ -615,7 +625,7 @@ var User = new schemas.getUserModel();
 require('./routes/products-rest.js')(app);
 
 
-app.use(express.static(__dirname + '/public'));
+
 /*
  require('./routes/db')
 

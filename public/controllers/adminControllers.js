@@ -42,7 +42,8 @@ angular.module("sportsStore")
             });
         }
     })
-    .controller("editorCtrl", function ($scope, createUrl, $http, $upload, uploadUrl, deleteImageUrl, $timeout, $q, dataHandler, updateUrl) {
+    .controller("editorCtrl", function ($scope, createUrl, $http, $upload, uploadUrl, deleteImageUrl, $timeout,
+                                        $q, dataHandler, updateUrl) {
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.imageDescriptions = [];
         initializeCurrentProduct();
@@ -246,7 +247,7 @@ angular.module("sportsStore")
                 $timeout(function () {
                     $(".update-success").slideUp();
                 }, 3000);
-                $scope.getProducts();
+//                $scope.getProducts();
                 $scope.util.currentProduct = {};
 
             }).catch(function (error) {
@@ -325,7 +326,7 @@ angular.module("sportsStore")
                 $timeout(function () {
                     $(".create-success").slideUp();
                 }, 3000);
-                $scope.getProducts();
+//                $scope.getProducts();
                 $scope.util.currentProduct = {};
 
             }).catch(function (error) {
@@ -448,27 +449,7 @@ angular.module("sportsStore")
         }
 
     })
-    .controller("ordersCtrl", function ($scope, $http, ordersUrl) {
-        $http.get(ordersUrl, {withCredentials: true})
-            .success(function (data) {
-                $scope.orders = data;
-            })
-            .error(function (error) {
-                $scope.error = error;
-            });
-        $scope.selectedOrder;
-        $scope.selectOrder = function (order) {
-            $scope.selectedOrder = order;
-        };
-        $scope.calcTotal = function (order) {
-            var total = 0;
-            for (var i = 0; i < order.products.length; i++) {
-                total +=
-                    order.products[i].count * order.products[i].price;
-            }
-            return total;
-        }
-    })
+
     .directive("saveConfirmation", function () {
         return {
             link: function ($scope, $elem, $attrs) {
