@@ -245,9 +245,10 @@ angular.module("sportsStore")
                 }
 
                 $(".update-success").slideDown();
-                $timeout(function () {
+                var cleanUpVar = $scope.$on("$routeChangeStart", function () {
                     $(".update-success").slideUp();
-                }, 3000);
+                    cleanUpVar();
+                })
 //                $scope.getProducts();
                 $scope.util.currentProduct = {};
 
