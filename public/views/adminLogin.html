@@ -8,15 +8,18 @@
     <div class="alert alert-info" ng-hide="authenticationError || showSignUpForm">
         Enter your username and password and click Log In to authenticate
     </div>
-    <div class="alert alert-info" ng-hide="signForm.$invalid || !showSignUpForm">
-        <span ng-hide="">Click "Sign Up" button to create your account</span>
+    <div class="alert alert-info" ng-hide="signupError || signForm.$invalid || !showSignUpForm">
+        <span>Click "Sign Up" button to create your account</span>
     </div>
     <div class="alert alert-danger" ng-show="signForm.$invalid && showSignUpForm">
         <span ng-show="signForm.$error.required"> Please fill up required fields </span>
         <span ng-show="!signForm.$error.required && signForm.$error.email"> Please enter correct email format </span>
     </div>
     <div class="alert alert-danger" ng-show="authenticationError && !showSignUpForm">
-        Authentication Failed. ({{authenticationError.message}})
+        Authentication Failed. ({{authenticationError}})
+    </div>
+    <div class="alert alert-danger" ng-show="signupError && showSignUpForm">
+        Sign up Failed. ({{signupError}})
     </div>
     <form name="authForm" novalidate ng-hide="showSignUpForm">
         <div>

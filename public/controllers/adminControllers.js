@@ -40,7 +40,7 @@ angular.module("sportsStore")
 //                $scope.authenticate(data.username, data.password)
             }).error(function (error) {
                 console.log("Error is: " + error);
-                $scope.authenticationError = error;
+                $scope.signupError = error;
             });
         }
     })

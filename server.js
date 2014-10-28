@@ -175,13 +175,13 @@ app.post('/api/signup', function (req, res) {
                             deferred.reject(err);
                         }
                         else {
-                            console.log("Now Saved!!")
-                            deferred.resolve(user)
+                            console.log("Now Saved!!");
+                            deferred.resolve(user);
                         }
                     });
                 }
                 catch (err) {
-                    console.log("CATCHUUUUU!")
+                    console.log("CATCHUUUUU!");
                     deferred.reject(err);
                 }
 
@@ -618,9 +618,13 @@ app.get('/:username/products', function (req, res) {
             products: 1
         },
         function (err, data) {
-            if (err) return console.error(err);
+            if (err) {
+                res.status(500).send(err.message);
+            }
+            else {
 //            console.log(data);
-            res.json(data);
+                res.json(data);
+            }
         })
 });
 
