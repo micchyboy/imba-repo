@@ -549,28 +549,6 @@ angular.module("sportsStore")
             }
         }
     })
-    /*.directive("requireExistingImage", function(){
-     return {
-     link: function($scope){
-     $scope.$watch("selectedFiles", function(){
-     validateImageExists();
-     }, true)
-
-     function validateImageExists() {
-     var imageExist = $scope.currentProduct.galleryImages && $scope.currentProduct.galleryImages.length > 0;
-     if (imageExist) {
-     $scope.detailsForm.$setValidity("imageExist", true);
-     }
-     else if ($scope.selectedFiles && $scope.selectedFiles.length > 0) {
-     $scope.detailsForm.$setValidity("imageExist", true);
-     }
-     else {
-     $scope.detailsForm.$setValidity("imageExist", false);
-     }
-     }
-     }
-     }
-     })*/
     .directive("simpleRepeater", function ($rootScope) {
 //        alert("Entered simple repeater directive..");
         return {

@@ -315,4 +315,34 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         };
 
         return directiveDefinitionObject;
+    })
+    .directive("tooltips", function () {
+
+        return {
+            scope: {
+                tooltips: "@"
+            },
+            link: function ($scope, $elem, $attrs) {
+                $elem.attr("data-toggle", "tooltip");
+                $elem.attr("data-original-title", $scope.tooltips);
+                $elem.addClass("tool");
+                $($elem[0]).tooltip({
+                    placement : 'bottom',
+                    trigger: 'manual'
+                });
+                $attrs.$observe('showtip', function() {
+                    var showTip = $scope.$eval($attrs["showtip"]);
+                    if(showTip) {
+                        $($elem[0]).tooltip('show');
+                    }
+                    else{
+                        $($elem[0]).tooltip('hide');
+                    }
+                });
+
+
+
+
+            }
+        }
     });
