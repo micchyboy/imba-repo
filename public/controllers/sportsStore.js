@@ -148,6 +148,14 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             return false;
         }
 
+        $scope.notifyDanger = function(message, duration){
+            $scope.notificationMessage = message;
+            $(".notification-danger").slideDown();
+            $timeout(function () {
+                $(".notification-danger").slideUp();
+            }, duration);
+        }
+
         $scope.isProduct = function () {
             var mode = $scope.util.mode;
             if (mode == "product") {

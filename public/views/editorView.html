@@ -75,6 +75,7 @@
         <span ng-switch-default>
             <!--<button class="btn btn-primary" ng-click="saveProduct()" ng-disabled="detailsForm.$invalid">Save</button>-->
             <button class="btn btn-primary" save-confirmation ng-disabled="detailsForm.$invalid">Save</button>
+            <button class="btn btn-primary" clear-details-confirmation>Clear</button>
         </span>
     </span>
     <!--<button class="btn btn-danger" ng-click="cancelEdit()">Clear All</button>-->
@@ -249,7 +250,13 @@
              ng-class="{'panel-danger': !detailsForm.$error.required && !containsImages() || detailsForm.$error.primaryImage}">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    Upload Images
+                    Upload Images <span class="pull-right">(
+                    <ng-pluralize
+                            count="counter"
+                            when="{'0' : '{} new file',
+                        '1' : '{} new file',
+                        'other' : '{} new files'}">
+                    </ng-pluralize>)</span>
                 </h3>
             </div>
             <div class="panel-body">
@@ -301,6 +308,13 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 Edit Images
+                <span class="pull-right">(
+                    <ng-pluralize
+                            count="currentProduct.galleryImages.length"
+                            when="{'1' : '{} image',
+                        'other' : '{} images'}">
+
+                    </ng-pluralize>)</span>
             </h3>
         </div>
         <div class="panel-body">

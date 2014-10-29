@@ -48,6 +48,8 @@ angular.module("sportsStore")
                                         $timeout, $q, dataHandler) {
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.imageDescriptions = [];
+
+
         initializeCurrentProduct();
         var deferred;
 
@@ -106,6 +108,7 @@ angular.module("sportsStore")
             var index = $scope.selectedFiles.indexOf(file);
             $scope.selectedFiles.splice(index, 1);
             $scope.dataUrls.splice(index, 1);
+            $scope.counter--;
         }
 
         $scope.containsImages = function () {
@@ -339,9 +342,32 @@ angular.module("sportsStore")
             });
         }
 
+
+        $scope.selectedFiles = [];
+        $scope.dataUrls = [];
+        $scope.counter = 0;
+
         $scope.onFileSelect = function ($files) {
 //            console.log($files);
-            $scope.selectedFiles = [];
+            $scope.duplicatedFiles = $scope.selectedFiles.filter(function(f) {
+                for(var i = 0; i < $files.length; i++){
+                    if(f.name == $files[i].name){
+                        $files.splice(i, 1);
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            if($scope.duplicatedFiles.length > 0){
+                /*for(var i = 0; i < $scope.duplicatedFiles.length; i++){
+                    $files.splice($files.indexOf($scope.duplicatedFiles[i]), 1);
+                }*/
+
+                $scope.notifyDanger("Duplicate filenames have been ignored. " +
+                    "Please rename the file then upload again.", 5000)
+            }
+
             $scope.progress = [];
             if ($scope.upload && $scope.upload.length > 0) {
                 for (var i = 0; i < $scope.upload.length; i++) {
@@ -360,13 +386,13 @@ angular.module("sportsStore")
              }
              }*/
 
-            $scope.selectedFiles = $files;
-            $scope.dataUrls = [];
-            for (var i = 0; i < $files.length; i++) {
-                var $file = $files[i];
+            $scope.selectedFiles = $scope.selectedFiles.concat($files);
+
+            for (var i = $scope.counter; i < $scope.selectedFiles.length; i++) {
+                var $file = $scope.selectedFiles[i];
                 if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                     var fileReader = new FileReader();
-                    fileReader.readAsDataURL($files[i]);
+                    fileReader.readAsDataURL($scope.selectedFiles[i]);
                     var loadFile = function (fileReader, index) {
                         fileReader.onload = function (e) {
                             $timeout(function () {
@@ -376,6 +402,7 @@ angular.module("sportsStore")
                     }(fileReader, i);
                 }
                 $scope.progress[i] = -1;
+                $scope.counter++;
                 /*if ($scope.uploadRightAway) {
                  $scope.start(i);
                  }*/
@@ -474,6 +501,7 @@ angular.module("sportsStore")
                             $('#myModalContentOnly').off('shown.bs.modal');
                             saveButton.off("click");
                             $('#myModalContentOnly .modal-content').html('');
+                            $('#myModalContentOnly').off('hidden.bs.modal');
                         });
 
                         saveButton.on("click", function () {
@@ -506,6 +534,7 @@ angular.module("sportsStore")
                             $('#myModalContentOnly').off('shown.bs.modal');
                             updateButton.off("click");
                             $('#myModalContentOnly .modal-content').html('');
+                            $('#myModalContentOnly').off('hidden.bs.modal');
                         });
 
                         updateButton.on("click", function () {
@@ -538,12 +567,45 @@ angular.module("sportsStore")
                             $('#myModalContentOnly').off('shown.bs.modal');
                             deleteButton.off("click");
                             $('#myModalContentOnly .modal-content').html('');
+                            $('#myModalContentOnly').off('hidden.bs.modal');
                         });
 
                         deleteButton.on("click", function () {
                             $scope.deleteProductImage($scope.item);
                             $('#myModalContentOnly').modal('hide');
                             deleteButton.off("click");
+                        })
+                    })
+
+                });
+            }
+        }
+    })
+    .directive("clearDetailsConfirmation", function () {
+        return {
+            link: function ($scope, $elem, $attrs) {
+                var content = document.querySelector("#clearDetailsConfirmation").textContent.trim();
+                var listElem = angular.element(content);
+                var clearButton = angular.element(listElem[0].querySelector(".clear-details"));
+
+                $elem.on('click', function () {
+                    $scope.$apply(function () {
+
+                        console.log("List Element: " + listElem);
+
+                        $('#myModalContentOnly').modal();
+                        $('#myModalContentOnly').on('shown.bs.modal', function () {
+                            $('#myModalContentOnly .modal-content').html(listElem[0]);
+                        });
+                        $('#myModalContentOnly').on('hidden.bs.modal', function () {
+                            $('#myModalContentOnly .modal-content').html('');
+                            $('#myModalContentOnly').off('shown.bs.modal');
+                            $('#myModalContentOnly').off('hidden.bs.modal');
+                        });
+
+                        clearButton.on("click", function () {
+                            $scope.reload();
+                            $('#myModalContentOnly').modal('hide');
                         })
                     })
 
