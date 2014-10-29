@@ -619,11 +619,19 @@ app.get('/api/products/:username', function (req, res) {
         },
         function (err, data) {
             if (err) {
-                res.status(500).send(err.message);
+
+                res.status(500).send(new Error("Server down").message);
             }
             else {
-//            console.log(data);
-                res.json(data);
+                if(data){
+                    console.log("Username exists");
+                    res.json(data);
+                }
+                else{
+                    console.error("No such user exists");
+                    res.status(500).send(new Error("No such user exists").message);
+                }
+
             }
         })
 });

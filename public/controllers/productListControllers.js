@@ -111,6 +111,27 @@ angular.module("sportsStore")
         }
 
     })
+    .directive("updateCurrentProduct", function(){
+        return {
+            link: function($scope, $elem, $attrs){
+                var cleanUp1 = $scope.$watch("item", function(){
+                    if($scope.util.currentProduct._id == $scope.item._id) {
+                        $scope.util.currentProduct = $scope.item;
+                        cleanUp1();
+                        cleanUp2();
+                    }
+                }, true)
+                var cleanUp2 = $scope.$watch("util.currentProduct", function(newValue, oldValue){
+                    if(newValue !== oldValue) {
+                        if ($scope.util.currentProduct._id != $scope.item._id) {
+                            cleanUp1();
+                            cleanUp2();
+                        }
+                    }
+                })
+            }
+        }
+    })
     .directive("deleteProductConfirmation", function () {
         return {
             link: function ($scope, $elem, $attrs) {

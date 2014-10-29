@@ -197,7 +197,6 @@ select, a {
     box-shadow: 0 0 20px #222222;
 }
 
-
 .display-none {
     display: none;
 }
@@ -218,11 +217,12 @@ select, a {
             <div class="row"><!--style="overflow-y: auto; height: 492px;">-->
 
                 <div class="well well-sm col-lg-12 clearfix list-container"
-                     ng-repeat="item in data.products | filter:categoryFilterFn | orderBy: searchData.criteria | range:selectedPage:pageSize track by $index"
+                     ng-repeat="item in data.products | filter:categoryFilterFn | orderBy: searchData.criteria | range:selectedPage:pageSize track by item._id"
                      ng-mouseenter="hover = true"
                      ng-mouseleave="hover = false"
                      ng-class="{pointed: hover, hovered: util.currentProduct._id == item._id}"
-                     ng-click="showDetailsView(item);">
+                     ng-click="showDetailsView(item);"
+                     update-current-product>
                     <!--ng-click="redirectPage('/details',item)">-->
                     <div class="house-image" style="float: left; margin-right: 25px; margin-left: 10px">
 

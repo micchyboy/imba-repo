@@ -89,6 +89,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 $scope.data.user = authService.getData("user");
             }
 
+            $scope.data.error = "";
             $scope.getProducts();
         })
 
