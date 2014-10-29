@@ -527,8 +527,8 @@ app.post('/api/upload', function (req, res) {
                 im.resize({
                     srcPath: path,
                     dstPath: thumbPath,
-                    width: 200,
-                    height: 150
+                    width: "200!",
+                    height: "150!"
                 }, function (err, stdout, stderr) {
                     console.log('resized image to thumbnail size 200x150px');
                     callback(err);
