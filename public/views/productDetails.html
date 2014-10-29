@@ -179,14 +179,17 @@
                 <div style="height: 420px; width: 100%; text-align: center">
                     <div style="float: left; width: 100%; " class="photos-gallery">
                         <div style="margin: 3px auto">
-                            <img ng-src="{{currentImage}}" height="340px"
-                                 width="490px" class="main-picture" style="border-radius: 15px;"
+                            <img ng-src="{{currentImage}}"
+                                 err-src="/images/gif/md-loading-spinner.gif"
+                                 height="340px" width="490px" class="main-picture" style="border-radius: 15px;"
                                  modal-gallery/>
                         </div>
 
                         <div style="float: left; height: 60px; width: 100%;">
                             <div style="width: 65%; float: left;">
-                                <img ng-src="{{currentProductImages[$index]}}" height="60px" width="70px"
+                                <img ng-src="{{currentProductImages[$index]}}"
+                                     err-src="/images/gif/sm-loading-spinner.gif"
+                                     height="60px" width="70px"
                                      ng-class="{selectedThumbnail : isCurrentImage(currentProductImages[$index])}"
                                      ng-repeat="item in currentProductImages | limitTo: 3"/>
                                 <!--ng-click="selectThumbnail(currentProductImages[$index])"-->

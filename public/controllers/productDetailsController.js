@@ -67,8 +67,8 @@ angular.module("sportsStore")
             arr.unshift(item)
         }
 
-        $scope.$watch("util.currentProduct", function(){
-            (function(data, multiples) {
+        $scope.$watch("util.currentProduct", function () {
+            (function (data, multiples) {
                 var temp = angular.copy(data);
                 var result = [];
                 var times = Math.ceil(temp.length / multiples);
@@ -80,12 +80,30 @@ angular.module("sportsStore")
                 $scope.filteredDetails = result;
             })($scope.util.currentProduct.details, 2);
         })
-       /* $scope.filterDetails = function(data, multiples) {
+        /* $scope.filterDetails = function(data, multiples) {
 
-            return $scope.filteredDetails;
-        };*///($scope.util.currentProduct.details, 2);
+         return $scope.filteredDetails;
+         };*///($scope.util.currentProduct.details, 2);
 
-    }).directive("modalGallery", function ($compile) {
+    })
+    .directive('errSrc', function () {
+        return {
+            link: function (scope, element, attrs) {
+                element.bind('error', function() {
+                    if (attrs.src != attrs.errSrc) {
+                        attrs.$set('src', attrs.errSrc);
+                    }
+                });
+
+                attrs.$observe('ngSrc', function(value) {
+                    if (!value && attrs.errSrc) {
+                        attrs.$set('src', attrs.errSrc);
+                    }
+                });
+            }
+        }
+    })
+    .directive("modalGallery", function ($compile) {
         console.log("Entered modal directive");
         return {
             scope: true,
