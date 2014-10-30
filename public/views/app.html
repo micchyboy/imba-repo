@@ -126,119 +126,6 @@ body {
     letter-spacing: 2px;
 }
 
-.user-misc a {
-    border-radius: 10px;
-    font-weight: bold;
-    color: #ffffff;
-    border: 0;
-}
-
-.nav-drop-down, .cred-nav-drop-down {
-    display: none;
-}
-
-@media (max-width: 423px) {
-    .user-name {
-        font-size: 16px;
-        width: 50% !important;
-    }
-
-    .user-details {
-        font-size: 14px;
-        width: 50% !important;
-    }
-
-    .user-details img {
-        height: 14px;
-        width: 20px;
-    }
-
-    .user-misc {
-        display: none;
-    }
-
-    .trademark-icon {
-        display: none;
-    }
-
-}
-
-@media (min-width: 424px){
-    .user-info .user-name {
-        font-size: 18px;
-        width: 50% !important;
-    }
-
-    .user-details {
-        font-size: 14px;
-        width: 45% !important;
-    }
-
-    .user-details img {
-        height: 14px;
-        width: 20px;
-    }
-
-    .user-misc {
-        display: none;
-    }
-
-    /*.location-finder {
-        width: 130px !important;
-    }*/
-    .trademark-icon {
-        display: none;
-    }
-
-}
-
-@media (max-width: 767px) {
-    .user-info .user-name {
-        font-size: 20px;
-    }
-
-    .user-details {
-        font-size: 12px;
-    }
-
-    /*.user-details img {
-        height: 20px;
-        width: 26px;
-    }*/
-    .user-misc {
-        display: none;
-    }
-
-    .trademark-icon {
-        display: none;
-    }
-
-    .navigation, .credentials-nav {
-        display: none;
-    }
-
-    .nav-drop-down, .cred-nav-drop-down {
-        display: inline;
-    }
-}
-
-@media (max-width: 991px) {
-    .user-misc {
-        width: 15% !important;
-    }
-
-    .user-details {
-        font-size: 18px;
-    }
-
-}
-
-@media (min-width: 992px) {
-    .user-details {
-        font-size: 24px;
-    }
-
-}
 
 .vertical-center {
     position: relative;
@@ -301,9 +188,7 @@ body {
     display: none;
 }
 
-.search-mobile-button {
-    display: none;
-}
+
 
 /*for sliding content*/
 .slide {
@@ -341,7 +226,126 @@ body {
     left: -100%;
     opacity: 0;
 }
+/*end of sliding content*/
 
+
+.navigation, .credentials-nav {
+    display: none;
+}
+
+/*@media (max-width: 767px) {
+    .user-info .user-name {
+        font-size: 20px;
+    }
+
+    .user-details {
+        font-size: 12px;
+    }
+
+
+    .trademark-icon {
+        display: none;
+    }
+
+    .navigation, .credentials-nav {
+        display: none;
+    }
+
+    .nav-drop-down, .cred-nav-drop-down {
+        display: inline;
+    }
+}*/
+
+
+.search-details {
+    display: none;
+}
+
+@media (min-width: 0px) and (max-width: 306px){
+    .user-name {
+        /*font-size: .8em;
+        width: 50%;*/
+        display: none;
+    }
+
+    .search-mobile-button button{
+        width: 94px;
+        font-size: 10px;
+        /*te*/
+    }
+
+    .action-menu{
+        width: 56px;
+        font-size: 10px;
+    }
+
+    .user-details {
+        font-weight: bold;
+        font-size: 1em;
+        width: 100%;
+        vertical-align: bottom;
+    }
+
+
+    .trademark-icon {
+        display: none;
+    }
+
+}
+
+@media (min-width: 307px) {
+    .user-name {
+        display: none;
+    }
+
+    .user-details {
+        font-weight: bold;
+        font-size: 1.1em;
+        width: 100%;
+    }
+
+
+
+}
+
+@media (min-width: 630px) {
+
+    .user-name {
+        display: inline;
+        width: 50%;
+    }
+
+    .user-details {
+        font-size: 1.1em;
+        width: 50%;
+        text-align: right;
+    }
+
+    .search-mobile-button button{
+        display: none;
+    }
+
+    .search-details {
+        display: inline;
+    }
+}
+
+@media (min-width: 810px) {
+
+    .user-details {
+        font-size: 1.4em;
+        width: 50%;
+    }
+
+    .navigation, .credentials-nav {
+        display: inline;
+    }
+
+    .nav-drop-down, .cred-nav-drop-down {
+        display: none;
+    }
+
+}
 
 </style>
 </head>
@@ -360,7 +364,7 @@ body {
             <div class="user-details pull-right">
                 <div>
                     <!--<img src="/images/icons/call.png" height="24px" width="30px">-->
-                    <span style="font-size: 14px">For inquiries:</span>
+                    <span>For inquiries:</span>
                     <span>0928.210.5990</span>
                 </div>
             </div>
@@ -463,7 +467,7 @@ body {
 
 
                         <div ng-if="isAuthenticated()" class="btn-group pull-right nav-drop-down">
-                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action
+                            <button type="button" data-toggle="dropdown" class="btn btn-default action-menu dropdown-toggle">Action
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a ng-click="createProduct();">Create</a></li>
