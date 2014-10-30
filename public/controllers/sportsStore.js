@@ -78,6 +78,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 .success(function (data) {
                     console.log(data.products);
                     $scope.data.products = data.products;
+                    $scope.data.phone = data.phone;
                 })
                 .error(function (error) {
                     $scope.data.error = error;
@@ -110,6 +111,8 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                     $(".logout-success").slideUp();
                 }, 3000);
 
+                $scope.data.user = {};
+
                 $scope.redirectPage("");
             }, function (error) {
                 console.log("Error logging out..");
@@ -119,7 +122,8 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
-            $location.path("/" + $scope.data.user.username + path);
+            var username = $scope.data.user.username ? $scope.data.user.username : $routeParams["username"];
+            $location.path("/" + username + path);
         }
 
         $scope.reload = function () {

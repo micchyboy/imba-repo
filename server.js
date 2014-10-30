@@ -615,7 +615,8 @@ app.get('/api/products/:username', function (req, res) {
             username: req.params.username
         },
         {
-            products: 1
+            products: 1,
+            phone: 1
         },
         function (err, data) {
             if (err) {

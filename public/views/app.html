@@ -364,8 +364,8 @@ body {
             <div class="user-details pull-right">
                 <div>
                     <!--<img src="/images/icons/call.png" height="24px" width="30px">-->
-                    <span>For inquiries:</span>
-                    <span>0928.210.5990</span>
+                    <span ng-show="data.phone[0]">For inquiries:</span>
+                    <span>{{data.phone[0]}}</span>
                 </div>
             </div>
         </nav>
@@ -550,8 +550,8 @@ body {
 </body>
 <footer class="footer">
     <div>
-        <h1 class="footer-headings">Contact Details:</h1>
-        <span class="footer-details">0928-210-5990<br>
+        <h1 class="footer-headings">Developer Contact Details:</h1>
+        <span class="footer-details">0916-787-9845<br>
             jethro.estrada@yahoo.com</span>
     </div>
 </footer>
