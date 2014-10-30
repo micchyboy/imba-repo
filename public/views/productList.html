@@ -26,108 +26,7 @@
 
 }
 
-.pill {
-    border: 1px solid #dadde2;
-    -webkit-border-radius: 4px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 4px;
-    -moz-background-clip: padding;
-    border-radius: 4px;
-    background-clip: padding-box;
-}
 
-.pill table {
-    width: 100%;
-}
-
-.pill table td.pill-section {
-    border-right: 1px solid #dadde2;
-    color: #3b3d40;
-    padding: 7px 14px;
-    text-align: center;
-}
-
-.pill table td.pill-section .pill-section-figure {
-    font-size: 17px;
-}
-
-.pill table td.pill-section .pill-section-caption {
-    color: #939292;
-    font-size: 12px;
-}
-
-@media (max-width: 1199px) {
-    .house-image img {
-        height: 135px;
-        width: 157px;
-    }
-
-    .pill table td.pill-section {
-        padding: 3px 7px;
-    }
-
-    .main-picture {
-        width: 400px !important;
-        height: 300px !important;
-    }
-}
-
-@media (max-width: 991px) {
-    .house-image {
-        margin-left: 30px !important;
-    }
-
-    .index {
-        margin-left: 17px;
-    }
-
-    .main-picture {
-        width: 480px !important;
-        height: 300px !important;
-    }
-}
-
-@media (max-width: 767px) {
-    .house-image {
-        margin-left: 30px !important;
-    }
-
-    .index {
-        margin-left: 17px;
-    }
-
-    .user-button {
-        display: none;
-    }
-
-}
-
-@media (min-width: 424px) and (max-width: 517px) {
-    .house-image img {
-        height: 120px;
-        width: 147px;
-    }
-
-    .pill table td.pill-section {
-        padding: 3px 7px;
-    }
-
-    .location-name {
-        font-size: 1.3em !important;
-    }
-
-}
-
-@media (max-width: 423px) {
-    .house-image img {
-        height: 116px;
-        width: 143px;
-    }
-
-    .pill table td.pill-section {
-        padding: 3px 7px;
-    }
-}
 
 #adder {
     position: absolute;
@@ -188,6 +87,7 @@ select, a {
     margin: 0 0;
     box-shadow: 2px 2px 1px darkgray;
     margin-top: 5px !important;
+    font-size: 17px;
 }
 
 .hovered {
@@ -208,6 +108,209 @@ select, a {
 }
 
 
+
+.pill {
+    border: 1px solid #dadde2;
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+}
+
+.pill table {
+    width: 100%;
+}
+
+.pill table td.pill-section {
+    border-right: 1px solid #dadde2;
+    color: #3b3d40;
+    padding: 7px 14px;
+    text-align: center;
+}
+
+.pill table td.pill-section .pill-section-figure {
+    font-size: 1em;
+}
+
+.pill table td.pill-section .pill-section-caption {
+    color: #939292;
+    font-size: .705882em;
+}
+
+.house-image {
+    float: left;
+    margin-right: 25px;
+    margin-left: 5%
+}
+
+
+
+
+@media (max-width: 1199px) {
+    .house-image img {
+        height: 135px;
+        width: 157px;
+    }
+
+    .pill table td.pill-section {
+        padding: 4px 8px;
+        font-size: 15px;
+    }
+
+    .main-picture {
+        width: 400px !important;
+        height: 300px !important;
+    }
+
+    .gallery-div {
+        height: 380px !important;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .index {
+        margin-left: 17px;
+    }
+
+    .main-picture {
+        width: 490px !important;
+        height: 340px !important;
+    }
+
+    .gallery-div {
+        height: 420px !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+
+
+    .index {
+        margin-left: 17px;
+    }
+
+
+}
+
+@media (max-width: 660px) {
+    .modal-dialog {
+        width: 97% !important;
+    }
+
+    .modal-gallery-image {
+        width: 100% !important;
+    }
+
+    .modal-gallery-thumbnails {
+        width: 16.129% !important;
+        height: 19.354% !important;
+    }
+
+    .house-image {
+        margin-left: 0px;
+    }
+
+    .pill table td.pill-section {
+        padding: 3px 7px;
+        /*font-size: 10px;*/
+    }
+
+    .index {
+        display: none;
+    }
+
+    .location-name {
+        font-size: .8em
+    }
+
+    .search-mobile-button {
+        display: inline;
+    }
+
+    .search-details {
+        display: none;
+    }
+
+
+}
+
+@media (max-width: 551px) {
+    .main-picture {
+        width: 100% !important;
+        height: 69.387755% !important;
+    }
+
+    .gallery-div {
+        height: 85.714286% !important;
+    }
+
+    .main-thumbnail {
+        width: 24.48979% !important;
+        height: 30.29411% !important;
+    }
+
+
+
+}
+
+@media (max-width: 446px) {
+    .house-image img {
+        height: 79px;
+        width: 105px;
+    }
+
+    .house-image {
+        margin-left: 0px;
+    }
+
+    .pill table td.pill-section {
+        padding: 3px 7px;
+        font-size: 11px;
+    }
+
+    .index {
+        display: none;
+    }
+
+    .location-name {
+        font-size: .8em
+    }
+
+    .btn-circle {
+        width: 88.88889% !important;
+        height: 66.66667% !important;
+        font-size: 2.690583vw !important;
+    }
+}
+
+@media (max-width: 372px) {
+    .house-image {
+        margin-right: 10px;
+    }
+
+    #item-options input {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .pill table td.pill-section {
+        font-size: 9px;
+    }
+
+    .index {
+        display: none;
+    }
+
+    #adder {
+        font-size: 8px;
+    }
+}
+
 </style>
 
 <div class="row" id="products-container"
@@ -226,7 +329,7 @@ select, a {
                      ng-click="showDetailsView(item);"
                      update-current-product>
                     <!--ng-click="redirectPage('/details',item)">-->
-                    <div class="house-image" style="float: left; margin-right: 25px; margin-left: 10px">
+                    <div class="house-image">
 
                         <img ng-src="{{item.primaryImage}}" ng-show="item.primaryImage">
                         <span ng-hide="item.primaryImage"> <img ng-src="/images/gif/lg-loading-spinner.gif"></span>

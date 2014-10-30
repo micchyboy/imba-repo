@@ -15,21 +15,21 @@ angular.module("sportsStore")
                 $scope.photoInterval.start();
             }
 
-            $scope.currentImage = $scope.convertToActualSize($scope.util.currentProduct.primaryImage);
+            $scope.currentImage = $scope.convertToGallerySize($scope.util.currentProduct.primaryImage);
         });
 
 //        $scope.currentProductImages = $scope.util.currentProduct.thumbnailImages;
 //
-//        $scope.currentImage = $scope.convertToActualSize($scope.currentProductImages[0]);
+//        $scope.currentImage = $scope.convertToGallerySize($scope.currentProductImages[0]);
 
         $scope.isCurrentImage = function (image) {
-            return $scope.convertToActualSize(image) == $scope.currentImage;
+            return $scope.convertToGallerySize(image) == $scope.currentImage;
         }
 
         $scope.photoInterval = {
             start: function () {
                 /*$scope.selectThumbnail = function (image) {
-                 $scope.currentImage = $scope.convertToActualSize(image);
+                 $scope.currentImage = $scope.convertToGallerySize(image);
                  }*/
 
                 $scope.selectUp = function () {
@@ -45,7 +45,7 @@ angular.module("sportsStore")
                 var i = 0;
                 $scope.photoInterval.interval = $interval(function () {
                     shiftArrayRight($scope.currentProductImages);
-                    $scope.currentImage = $scope.convertToActualSize($scope.currentProductImages[i]);
+                    $scope.currentImage = $scope.convertToGallerySize($scope.currentProductImages[i]);
 
                 }, 4000);
             },

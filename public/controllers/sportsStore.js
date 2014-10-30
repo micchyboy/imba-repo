@@ -25,12 +25,12 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             resolve: resolve
         });
         /*$routeProvider.when("/home", {
-            templateUrl: "/views/homePage.html",
-            resolve: resolve
-        });*/
+         templateUrl: "/views/homePage.html",
+         resolve: resolve
+         });*/
         /*$routeProvider.otherwise({
-            redirectTo: "/productss/:username"
-        });*/
+         redirectTo: "/productss/:username"
+         });*/
     })
     .run(function ($templateCache, $http) {
         $http.get('/views/adminLogin.html', {cache: $templateCache});
@@ -41,8 +41,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             $locationProvider.html5Mode(true);
         }
     })
-    .controller("sportsStoreCtrl", function ($scope, $http, $location, $anchorScroll, urls,
-                                             $timeout, anchorSmoothScroll, authService, $routeParams, $route) {
+    .controller("sportsStoreCtrl", function ($scope, $http, $location, $anchorScroll, urls, $timeout, anchorSmoothScroll, authService, $routeParams, $route) {
         $scope.data = {
         };
         $scope.util = {};
@@ -117,7 +116,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
-            $location.path("/" + $scope.data.user.username  + path);
+            $location.path("/" + $scope.data.user.username + path);
         }
 
         $scope.reload = function () {
@@ -141,14 +140,14 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             return false;
         };
 
-        $scope.isUserOwned = function(){
+        $scope.isUserOwned = function () {
             if (authService.getData("isAuthenticated") == true) {
                 return $routeParams["username"] ? $routeParams["username"] == $scope.data.user.username : false;
             }
             return false;
         }
 
-        $scope.notifyDanger = function(message, duration){
+        $scope.notifyDanger = function (message, duration) {
             $scope.notificationMessage = message;
             $(".notification-danger").slideDown();
             $timeout(function () {
@@ -179,9 +178,13 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             return gallery.replace(galleryPath, "/images/thumbnails");
         }
 
-        $scope.hasNoProduct = function(){
+        $scope.hasNoProduct = function () {
             return $scope.data.products && $scope.data.products.length == 0
                 && $scope.util.mode == 'product' && $scope.isUserOwned();
+        }
+
+        $scope.getViewport = function () {
+            return document.documentElement.clientWidth;
         }
 
         //for sliding content
@@ -293,6 +296,71 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             }
         }
     })
+    .directive("searchTemplate", function ($compile) {
+        return {
+            link: function ($scope, $elem, $attrs) {
+                var content = $(".search-details").html();
+
+                var container = angular.element("<div>");
+                var listElem = angular.element(content);
+
+
+                var header = '<div class="modal-header">'+
+                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                '<h4 class="modal-title">Search</h4>'+
+                            '</div>';
+
+                var body = angular.element('<div class="modal-body">');
+
+
+                var table = angular.element("<table>");
+                var search = '<tr>'+
+                    '<td>Location:</td>'+
+                    '<td>' + listElem[0].querySelector(".search-location").outerHTML + '</td>'+
+                    '</tr>';
+                var minPrice = '<tr>'+
+                    '<td>Minimum Price:</td>'+
+                    '<td>' + listElem[0].querySelector(".search-min-price").outerHTML + '</td>'+
+                    '</tr>';
+                var maxPrice = '<tr>'+
+                    '<td>Maximum Price:</td>'+
+                    '<td>' + listElem[0].querySelector(".search-max-price").outerHTML + '</td>'+
+                    '</tr>';
+                var sortBy = '<tr>'+
+                    '<td>Sort By:</td>'+
+                    '<td>' + listElem[0].querySelector(".prod-sorter").outerHTML + '</td>'+
+                    '</tr>';
+
+                var footer = '<div class="modal-footer">'+
+                    '<button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>'+
+                    '</div>';
+
+                table.append(search).append(minPrice).append(maxPrice).append(sortBy);
+                body.append(table);
+
+                container.append(header);
+                container.append(body);
+                container.append(footer);
+
+                var compileFn = $compile(container);
+                compileFn($scope);
+                $elem.on("click", function(){
+                    $('#myModalContentOnly').modal();
+                    $('#myModalContentOnly').on('shown.bs.modal', function () {
+                        $('#myModalContentOnly .modal-content').html(container[0]);
+                    });
+                    $('#myModalContentOnly').on('hidden.bs.modal', function () {
+                        $('#myModalContentOnly .modal-content').html('');
+                        $('#myModalContentOnly').off('shown.bs.modal');
+                        $('#myModalContentOnly').off('hidden.bs.modal');
+                    });
+                })
+
+
+
+            }
+        }
+    })
     .directive("ngScopeElement", function () {
         var directiveDefinitionObject = {
 
@@ -320,20 +388,18 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 $elem.attr("data-original-title", $scope.tooltips);
                 $elem.addClass("tool");
                 $($elem[0]).tooltip({
-                    placement : 'left',
+                    placement: 'left',
                     trigger: 'manual'
                 });
-                $attrs.$observe('showtip', function() {
+                $attrs.$observe('showtip', function () {
                     var showTip = $scope.$eval($attrs["showtip"]);
-                    if(showTip) {
+                    if (showTip) {
                         $($elem[0]).tooltip('show');
                     }
-                    else{
+                    else {
                         $($elem[0]).tooltip('hide');
                     }
                 });
-
-
 
 
             }

@@ -133,6 +133,10 @@ body {
     border: 0;
 }
 
+.nav-drop-down, .cred-nav-drop-down {
+    display: none;
+}
+
 @media (max-width: 423px) {
     .user-name {
         font-size: 16px;
@@ -157,12 +161,9 @@ body {
         display: none;
     }
 
-    .navigation, .credentials-nav {
-        display: none;
-    }
 }
 
-@media (min-width: 424px) and (max-width: 517px) {
+@media (min-width: 424px){
     .user-info .user-name {
         font-size: 18px;
         width: 50% !important;
@@ -185,18 +186,13 @@ body {
     /*.location-finder {
         width: 130px !important;
     }*/
-
     .trademark-icon {
-        display: none;
-    }
-
-    .navigation, .credentials-nav {
         display: none;
     }
 
 }
 
-@media (min-width: 518px) and (max-width: 767px) {
+@media (max-width: 767px) {
     .user-info .user-name {
         font-size: 20px;
     }
@@ -220,9 +216,13 @@ body {
     .navigation, .credentials-nav {
         display: none;
     }
+
+    .nav-drop-down, .cred-nav-drop-down {
+        display: inline;
+    }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (max-width: 991px) {
     .user-misc {
         width: 15% !important;
     }
@@ -231,13 +231,6 @@ body {
         font-size: 18px;
     }
 
-    .navigation, .credentials-nav {
-        display: none;
-    }
-
-    .nav-drop-down, .cred-nav-drop-down {
-        display: inline;
-    }
 }
 
 @media (min-width: 992px) {
@@ -245,9 +238,6 @@ body {
         font-size: 24px;
     }
 
-    .nav-drop-down, .cred-nav-drop-down {
-        display: none;
-    }
 }
 
 .vertical-center {
@@ -306,12 +296,14 @@ body {
     padding: 7px 14px;
 }
 
-.login-success, .logout-success, .create-success, .update-success, .signup-success, .notification-danger{
+.login-success, .logout-success, .create-success, .update-success, .signup-success, .notification-danger {
     margin-bottom: 2px;
     display: none;
 }
 
-
+.search-mobile-button {
+    display: none;
+}
 
 /*for sliding content*/
 .slide {
@@ -325,7 +317,7 @@ body {
     -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
-    position:absolute;
+    position: absolute;
     left: 0;
     right: 0;
 }
@@ -340,7 +332,7 @@ body {
 .slide.left.ng-leave,
 .slide.right.ng-enter.ng-enter-active,
 .slide.right.ng-leave {
-    left:0;
+    left: 0;
     opacity: 1;
 }
 
@@ -385,32 +377,40 @@ body {
                       class="form-inline" style="padding-top: 10px; padding-left: 30px">
 
                     <div>
-                    <span ng-show="isProduct()">
-                        <select ng-model="searchData.location"
-                                ng-options="item for item in data.products  | orderBy:'city' | unique:'city'"
-                                class="input-control"
-                                style="width: 130px;"
-                                ng-click="selectCategory(searchData.location)">
-                            <option value="">
-                                Search All
-                            </option>
-                        </select>
+                        <span class="search-mobile-button">
+                            <button class="btn btn-primary" search-template>Search Details</button>
+                        </span>
 
-                        <input name="minPrice" type="text" ng-model="searchData.minPrice" class="input-control"
-                               style="width: 93px;" placeholder="Min. Price"
-                               ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
-                        <input name="maxPrice" type="text" ng-model="searchData.maxPrice" class="input-control"
-                               style="width: 93px;" placeholder="Max. Price"
-                               ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
+                        <span class="search-details" ng-show="isProduct()">
+                            <span>
+                                <select ng-model="searchData.location"
+                                        ng-options="item for item in data.products  | orderBy:'city' | unique:'city'"
+                                        class="input-control search-location"
+                                        style="width: 130px;"
+                                        ng-click="selectCategory(searchData.location)">
+                                    <option value="">
+                                        Search All
+                                    </option>
+                                </select>
 
-                        <!--<span style="font-weight: bold">Sort by:</span>-->
-                        <select ng-model="searchData.criteria"
-                                ng-options="item.value as item.criteria for item in util.sortBy"
-                                class="input-control"
-                                style="width: 90px;"
-                                ng-click="sorter(searchData.criteria)">
-                        </select>
-                    </span>
+                                <input name="minPrice" type="text" ng-model="searchData.minPrice"
+                                       class="input-control search-min-price"
+                                       style="width: 93px;" placeholder="Min. Price"
+                                       ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
+                                <input name="maxPrice" type="text" ng-model="searchData.maxPrice"
+                                       class="input-control search-max-price"
+                                       style="width: 93px;" placeholder="Max. Price"
+                                       ng-change="searchProduct(searchData.location, searchData.minPrice, searchData.maxPrice)">
+
+                                <!--<span style="font-weight: bold">Sort by:</span>-->
+                                <select ng-model="searchData.criteria"
+                                        ng-options="item.value as item.criteria for item in util.sortBy"
+                                        class="input-control prod-sorter"
+                                        style="width: 90px;"
+                                        ng-click="sorter(searchData.criteria)">
+                                </select>
+                            </span>
+                        </span>
 
                         <div style="width: 50px" class="pull-right">
                             &nbsp;
@@ -430,7 +430,8 @@ body {
                         </credentials-form>
 
                         <credentials-form ng-if="!isAuthenticated()" class="btn-group pull-right cred-nav-drop-down">
-                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action <span class="caret"></span></button>
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action
+                                <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a>Log In</a></li>
                                 <li><a>Sign Up</a></li>
@@ -462,7 +463,8 @@ body {
 
 
                         <div ng-if="isAuthenticated()" class="btn-group pull-right nav-drop-down">
-                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action <span class="caret"></span></button>
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action
+                                <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a ng-click="createProduct();">Create</a></li>
                                 <li><a ng-click="showProduct();">List</a></li>
@@ -498,14 +500,16 @@ body {
 
         <div class="alert alert-success create-success">
             You have successfully created a new listing!
-            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the added listing</a>
+            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the added
+                                                                                  listing</a>
             or
             <a class="pointed" ng-click="reload();" style="font-weight: bold">Click here to create a new listing</a>
         </div>
 
         <div class="alert alert-success update-success">
             You successfully updated the listing!
-            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the updated listing</a>
+            <a class="pointed" ng-click="showProduct()" style="font-weight: bold">Click here to see the updated
+                                                                                  listing</a>
         </div>
         <!--<ng-view/>-->
 
