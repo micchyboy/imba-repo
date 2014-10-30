@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/app.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.703704" vertical-offset="6720" max-vertical-offset="9520">
-              <caret line="442" column="68" selection-start-line="442" selection-start-column="68" selection-end-line="442" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.57706094" vertical-offset="8331" max-vertical-offset="9588">
+              <caret line="509" column="24" selection-start-line="509" selection-start-column="24" selection-end-line="509" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#span#0;n#span#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#span#0;n#span#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -57,9 +57,10 @@
                 <element signature="n#style#0;n#button#0;n#credentials-form#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#span#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#2;n#span#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#6;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#6;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#8;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,8 +69,8 @@
       <file leaf-file-name="sportsStore.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/controllers/sportsStore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.928572" vertical-offset="4056" max-vertical-offset="7055">
-              <caret line="278" column="73" selection-start-line="278" selection-start-column="73" selection-end-line="278" selection-end-column="73" />
+            <state vertical-scroll-proportion="-66.60714" vertical-offset="1263" max-vertical-offset="7055">
+              <caret line="184" column="39" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -89,17 +90,17 @@
         <entry file="file://$PROJECT_DIR$/db/schemas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urlService.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="urlService.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2448" vertical-offset="0" max-vertical-offset="625">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -194,10 +195,10 @@
         <option value="$PROJECT_DIR$/public/views/editorView.html" />
         <option value="$PROJECT_DIR$/public/controllers/adminControllers.js" />
         <option value="$PROJECT_DIR$/public/controllers/productListControllers.js" />
-        <option value="$PROJECT_DIR$/public/views/app.html" />
         <option value="$PROJECT_DIR$/public/controllers/sportsStore.js" />
-        <option value="$PROJECT_DIR$/db/schemas.js" />
         <option value="$PROJECT_DIR$/public/services/urlService.js" />
+        <option value="$PROJECT_DIR$/db/schemas.js" />
+        <option value="$PROJECT_DIR$/public/views/app.html" />
       </list>
     </option>
   </component>
@@ -746,18 +747,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/controllers/adminControllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1058" max-vertical-offset="12716">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schemas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/controllers/sportsStore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.928572" vertical-offset="4056" max-vertical-offset="7055">
-          <caret line="278" column="73" selection-start-line="278" selection-start-column="73" selection-end-line="278" selection-end-column="73" />
+        <state vertical-scroll-proportion="-66.60714" vertical-offset="1263" max-vertical-offset="7055">
+          <caret line="184" column="39" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/app.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.703704" vertical-offset="6720" max-vertical-offset="9520">
-          <caret line="442" column="68" selection-start-line="442" selection-start-column="68" selection-end-line="442" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.57706094" vertical-offset="8331" max-vertical-offset="9588">
+          <caret line="509" column="24" selection-start-line="509" selection-start-column="24" selection-end-line="509" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#select#0;n#span#0;n#span#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#span#1;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -767,34 +792,11 @@
             <element signature="n#style#0;n#button#0;n#credentials-form#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#span#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#span#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#6;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#6;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#7;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#8;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/controllers/adminControllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1058" max-vertical-offset="12716">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schemas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2448" vertical-offset="0" max-vertical-offset="625">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>

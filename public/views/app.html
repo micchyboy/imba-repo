@@ -463,9 +463,9 @@ body {
                             List
                         </button>
 
+                                <!--tooltips="{{'You have no product. Click Create button to add one.'}}"
+                                showtip="{{hasNoProduct()}}"-->
                         <button type="button" class="input-control pull-right user-button"
-                                tooltips="{{'You have no product. Click Create button to add one.'}}"
-                                showtip="{{hasNoProduct()}}"
                                 ng-click="createProduct();"
                                 style="background: linear-gradient(#227dda, #000088);">
                             Create
@@ -504,6 +504,10 @@ body {
 
         <div class="alert alert-danger notification-danger">
             {{notificationMessage}}
+        </div>
+
+        <div class="alert alert-info " ng-show="data.products && data.products.length == 0 && util.mode == 'product'">
+            No products. <a ng-show="isUserOwned()" ng-click="createProduct()" style="font-weight: bold"> Click here to create one</a>
         </div>
 
         <div class="alert alert-info login-success">
