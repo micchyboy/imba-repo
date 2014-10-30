@@ -56,6 +56,27 @@
     .thumbnail {
         margin-bottom: 5px;
     }
+
+    @media (min-width: 0px) and (max-width: 422px){
+        .notification-bar, .file-edit-count, .file-new-count{
+            display: none;
+        }
+
+        .upload-form .btn{
+            width: 50px;
+            font-size: 8px;
+        }
+
+    }
+
+    @media (min-width: 423px) and (max-width: 600px){
+        .notification-bar{
+            font-size: .9em;
+            margin-left: 10%;
+        }
+
+    }
+
 </style>
 
 <div class="panel-body main-editor" ng-controller="editorCtrl">
@@ -250,12 +271,12 @@
              ng-class="{'panel-danger': !detailsForm.$error.required && !containsImages() || detailsForm.$error.primaryImage}">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    Upload Images <span class="pull-right">(
+                    Upload Images <span class="pull-right file-new-count">(
                     <ng-pluralize
                             count="counter"
-                            when="{'0' : '{} new file',
-                        '1' : '{} new file',
-                        'other' : '{} new files'}">
+                            when="{'0' : '{} file',
+                        '1' : '{} file',
+                        'other' : '{} files'}">
                     </ng-pluralize>)</span>
                 </h3>
             </div>
@@ -267,7 +288,7 @@
                            onchange="angular.element(this).scope().$apply('imageDescriptions = []');">
 
                     <div class="row" style="height: 420px; overflow-y: auto">
-                        <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6" ng-repeat="f in selectedFiles">
+                        <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6" ng-repeat="f in selectedFiles">
 
                             <div class="thumbnail">
                                 <!--<img src="/bootstrap/images/kittens.jpg"
@@ -308,7 +329,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 Edit Images
-                <span class="pull-right">(
+                <span class="pull-right file-edit-count">(
                     <ng-pluralize
                             count="currentProduct.galleryImages.length"
                             when="{'1' : '{} image',

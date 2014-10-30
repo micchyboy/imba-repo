@@ -51,6 +51,18 @@ angular.module("sportsStore")
 //            $scope.gotoElement('main');
         }
 
+        $scope.triggerAction = function(userAction){
+            if(userAction == "Logout"){
+                $scope.logout()
+            }
+            else if(userAction == "Create"){
+                $scope.createProduct()
+            }
+            else{
+                $scope.showProduct();
+            }
+        }
+
         $scope.showProduct = function () {
             $scope.util.mode = 'product';
             $scope.util.currentProduct = {};

@@ -55,7 +55,11 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             {criteria: "Price+", value: "price"},
             {criteria: "Price-", value: "-price"}
         ];
+
         $scope.util.sortBy.default = "-updatedAt";
+
+        $scope.util.actions = ["Create", "List", "Logout"];
+        $scope.util.guestActions = ["Log In", "Sign Up"];
 
         /*$scope.$on("$routeChangeSuccess", function () {
          console.log("Route change success! Main");
@@ -112,7 +116,6 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 $scope.authenticationError = error;
             });
         }
-
 
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
@@ -261,12 +264,12 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         return {
             restrict: "EA",
             link: function (scope, elem, attrs) {
-                elem.on("click", function (e) {
-
-                    if (e.target.textContent.trim() == "Log In") {
+                elem.on("click change", function (e) {
+                    var value = e.type == "click" ? e.target.textContent.trim() : scope.userAction;
+                    if (value == "Log In") {
                         scope.showSignUpForm = false;
                     }
-                    else if (e.target.textContent.trim() == "Sign Up") {
+                    else if (value == "Sign Up") {
                         scope.showSignUpForm = true;
                     }
                     else {

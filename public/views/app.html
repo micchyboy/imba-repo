@@ -381,7 +381,7 @@ body {
                       class="form-inline" style="padding-top: 10px; padding-left: 30px">
 
                     <div>
-                        <span class="search-mobile-button">
+                        <span class="search-mobile-button" ng-show="isProduct()">
                             <button class="btn btn-primary" search-template>Search Details</button>
                         </span>
 
@@ -434,12 +434,19 @@ body {
                         </credentials-form>
 
                         <credentials-form ng-if="!isAuthenticated()" class="btn-group pull-right cred-nav-drop-down">
-                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action
+                            <!--<button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Action
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a>Log In</a></li>
                                 <li><a>Sign Up</a></li>
-                            </ul>
+                            </ul>-->
+                            <select class="action-menu btn btn-info"
+                                    ng-model="userAction"
+                                    ng-options="item for item in util.guestActions">
+                                <option disabled="disabled" value="">
+                                    Action
+                                </option>
+                            </select>
                         </credentials-form>
 
 
@@ -467,13 +474,22 @@ body {
 
 
                         <div ng-if="isAuthenticated()" class="btn-group pull-right nav-drop-down">
-                            <button type="button" data-toggle="dropdown" class="btn btn-default action-menu dropdown-toggle">Action
+                            <!--<button type="button" data-toggle="dropdown" class="btn btn-default action-menu dropdown-toggle">Action
                                 <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li><a ng-click="createProduct();">Create</a></li>
                                 <li><a ng-click="showProduct();">List</a></li>
                                 <li><a ng-click="logout()">Logout</a></li>
-                            </ul>
+                            </ul>-->
+
+                            <select class="action-menu btn btn-info"
+                                    ng-model="userAction"
+                                    ng-options="item for item in util.actions"
+                                    ng-click="triggerAction(userAction)">
+                                <option disabled="disabled" value="">
+                                    Action
+                                </option>
+                            </select>
                         </div>
                     </div>
 
