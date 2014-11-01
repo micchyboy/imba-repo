@@ -110,7 +110,10 @@
     <!--<button class="btn btn-danger" ng-click="cancelEdit()">Clear All</button>-->
 
 
-    <span ng-show="detailsForm.$invalid">
+    <span class="notification-bar alert" editor-validation>
+
+    </span>
+    <!--<span ng-show="detailsForm.$invalid">
          <span class="notification-bar alert alert-danger" ng-show="detailsForm.$error.required">
         Please enter required details
         </span>
@@ -132,7 +135,7 @@
         <span class="notification-bar alert alert-info" ng-show="containsImages()">
         You may save/update anytime
         </span>
-    </span>
+    </span>-->
 
 </div>
 

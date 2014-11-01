@@ -8,6 +8,18 @@
     <div class="alert alert-info" ng-hide="authenticationError || showSignUpForm">
         Enter your username and password and click Log In to authenticate
     </div>
+    <div class="alert" signup-validation ng-show="showSignUpForm">
+    </div>
+
+    <div class="alert alert-danger" ng-show="authenticationError && !showSignUpForm">
+        Authentication Failed. ({{authenticationError}})
+    </div>
+    <div class="alert alert-danger" ng-show="signupError && showSignUpForm">
+        Sign up Failed. ({{signupError}})
+    </div>
+    <!--<div class="alert alert-info" ng-hide="authenticationError || showSignUpForm">
+        Enter your username and password and click Log In to authenticate
+    </div>
     <div class="alert alert-info" ng-hide="signupError || signForm.$invalid || !showSignUpForm">
         <span>Click "Sign Up" button to create your account</span>
     </div>
@@ -20,12 +32,13 @@
     </div>
     <div class="alert alert-danger" ng-show="signupError && showSignUpForm">
         Sign up Failed. ({{signupError}})
-    </div>
+    </div>-->
     <form name="authForm" novalidate ng-hide="showSignUpForm">
         <div>
             <div class="form-group">
                 <label>Username</label>
-                <input name="username" class="form-control" ng-model="username" required/>
+                <input name="username" class="form-control" ng-model="username"
+                       required/>
             </div>
             <div class="form-group">
                 <label>Password</label>
@@ -49,7 +62,7 @@
     <form ng-show="showSignUpForm" name="signForm" novalidate>
         <div class="form-group">
             <span class="required-color">*</span> <label>Username</label>
-            <input name="username" class="form-control" ng-model="credentials[0]" required/>
+            <input name="username" class="form-control" ng-pattern="usernamePattern()" ng-model="credentials[0]" required/>
         </div>
         <div class="form-group">
             <span class="required-color">*</span> <label>Password</label>
@@ -69,7 +82,7 @@
         <div class="text-center">
             <button ng-click="signUp()" ng-disabled="signForm.$invalid"
                     class="btn btn-primary">
-               Sign Up
+                Sign Up
             </button>
 
             <a ng-click="showSignUpForm = false"> Or click here to return to Log In page</a>

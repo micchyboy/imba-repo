@@ -43,6 +43,10 @@ angular.module("sportsStore")
                 $scope.signupError = error;
             });
         }
+
+        $scope.usernamePattern = function () {
+            return new RegExp("^[a-zA-Z0-9]*$");
+        };
     })
     .controller("editorCtrl", function ($scope, urls, $http, $upload,
                                         $timeout, $q, dataHandler) {
@@ -68,11 +72,11 @@ angular.module("sportsStore")
 
         $scope.numberWithDecimalPattern = function () {
             return new RegExp("^[0-9]+[.]?[0-9]*$");
-        }
+        };
 
         $scope.numberPattern = function () {
             return new RegExp("^[0-9]+$");
-        }
+        };
 
         //TODO: not used, logic moved to server to append "- Copy" on duplicates
         $scope.renameDuplicate = function () {
