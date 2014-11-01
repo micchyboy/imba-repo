@@ -4,8 +4,7 @@ angular.module("sportsStore")
     .config(function ($anchorScrollProvider) {
         $anchorScrollProvider.disableAutoScrolling();
     })
-    .controller("productListCtrl", function ($scope, $filter, productListActiveClass, productListPageCount,
-                                             $http, urls) {
+    .controller("productListCtrl", function ($scope, $filter, productListActiveClass, productListPageCount, $http, urls) {
         var selectedCategory = null;
         var minimumPrice = 0;
         var maximumPrice = 0;
@@ -51,14 +50,14 @@ angular.module("sportsStore")
 //            $scope.gotoElement('main');
         }
 
-        $scope.triggerAction = function(userAction){
-            if(userAction == "Logout"){
+        $scope.triggerAction = function (userAction) {
+            if (userAction == "Logout") {
                 $scope.logout()
             }
-            else if(userAction == "Create"){
+            else if (userAction == "Create") {
                 $scope.createProduct()
             }
-            else{
+            else {
                 $scope.showProduct();
             }
         }
@@ -101,7 +100,7 @@ angular.module("sportsStore")
             }).then(function (result) {
                 console.log("Product deleted.");
 
-                if($scope.util.currentProduct._id == item._id){
+                if ($scope.util.currentProduct._id == item._id) {
                     $scope.util.currentProduct = {};
                 }
                 $scope.data.products.splice($scope.data.products.indexOf(item), 1);
@@ -123,18 +122,18 @@ angular.module("sportsStore")
         }
 
     })
-    .directive("updateCurrentProduct", function(){
+    .directive("updateCurrentProduct", function () {
         return {
-            link: function($scope, $elem, $attrs){
-                var cleanUp1 = $scope.$watch("item", function(){
-                    if($scope.util.currentProduct._id == $scope.item._id) {
+            link: function ($scope, $elem, $attrs) {
+                var cleanUp1 = $scope.$watch("item", function () {
+                    if ($scope.util.currentProduct._id == $scope.item._id) {
                         $scope.util.currentProduct = $scope.item;
                         cleanUp1();
                         cleanUp2();
                     }
                 }, true)
-                var cleanUp2 = $scope.$watch("util.currentProduct", function(newValue, oldValue){
-                    if(newValue !== oldValue) {
+                var cleanUp2 = $scope.$watch("util.currentProduct", function (newValue, oldValue) {
+                    if (newValue !== oldValue) {
                         if ($scope.util.currentProduct._id != $scope.item._id) {
                             cleanUp1();
                             cleanUp2();
@@ -177,18 +176,38 @@ angular.module("sportsStore")
             }
         }
     })
-    .directive("bindImageSrc", function(){
+    .directive("bindImageSrc", function () {
         return {
-            link: function($scope, $elem, $attrs){
-                $attrs.$observe("ngSrc", function(value){
-                    if(value){
+            link: function ($scope, $elem, $attrs) {
+                $attrs.$observe("ngSrc", function (value) {
+                    if (value) {
                         console.log("Image src changed to: " + value);
                         $attrs.$set("src", value);
                     }
-                    else{
+                    else {
                         //add the spinner
                     }
                 })
             }
         }
-    });
+    })
+    .filter('myCurrency', ['$filter', function ($filter) {
+        return function (input) {
+            if (angular.isDefined(input)) {
+
+                input = parseFloat(input);
+
+                if (input % 1 === 0) {
+                    input = input.toFixed(0);
+                }
+                else {
+                    input = input.toFixed(2);
+                }
+
+                return 'P ' + input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            return "";
+        };
+    }]);
+;

@@ -201,6 +201,10 @@ select, a {
         width: 97% !important;
     }
 
+    .modal-body {
+        padding: 2.34375% !important;
+    }
+
     .modal-gallery-image {
         width: 100% !important;
     }
@@ -216,16 +220,16 @@ select, a {
 
     .pill table td.pill-section {
         padding: 3px 7px;
-        /*font-size: 10px;*/
+        font-size: 15px;
     }
 
     .index {
         display: none;
     }
 
-    .location-name {
+    /*.location-name {
         font-size: .8em
-    }
+    }*/
 
 }
 
@@ -278,7 +282,7 @@ select, a {
     }
 }
 
-@media (max-width: 372px) {
+/*@media (max-width: 372px) {
     .house-image {
         margin-right: 10px;
     }
@@ -300,7 +304,7 @@ select, a {
     #adder {
         font-size: 8px;
     }
-}
+}*/
 
 @media (max-width: 372px) {
     .house-image {
@@ -428,7 +432,7 @@ select, a {
                                     </td>
                                     <td class="pill-section">
                                         <div class="pill-section-figure">
-                                            {{item.price | currency}}
+                                            {{item.price | myCurrency}}
 
                                         </div>
                                         <div class="pill-section-caption">

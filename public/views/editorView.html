@@ -158,12 +158,12 @@
                 <div class="form-group">
                     <span><label>Price:</label> </span>
                     <span ng-hide="detailsForm.price.$error.pattern"
-                          class="success">{{currentProduct.price | currency}}</span>
+                          class="success">{{currentProduct.price | myCurrency}}</span>
                 <span ng-show="detailsForm.price.$error.pattern" class="error">
                     Numbers only
                 </span>
                     <input name="price" class="form-control" ng-model="currentProduct.price"
-                           ng-pattern="numberWithDecimalPattern()" required/>
+                           ng-pattern="numberPattern()" required/>
                 </div>
 
                 <div class="form-group">
