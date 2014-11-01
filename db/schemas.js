@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 
 module.exports.getUserModel = function () {
 
-    mongoose.connect("mongodb://localhost/re_db");
-//    mongoose.connect("mongodb://jethro:michyboy237@linus.mongohq.com:10037/imba_db");
+//    mongoose.connect("mongodb://localhost/re_db");
+    mongoose.connect("mongodb://jethro:michyboy237@linus.mongohq.com:10037/imba_db");
     console.log("Connected to mongoose");
     var productSchema = new Schema({
         category: String,
