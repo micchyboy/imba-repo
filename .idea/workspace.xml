@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urlService.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urlService.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.082125604" vertical-offset="0" max-vertical-offset="621">
+              <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/db/schemas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="969">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -76,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="productListControllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="productListControllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/controllers/productListControllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41282895" vertical-offset="3047" max-vertical-offset="3706">
-              <caret line="194" column="33" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3047" max-vertical-offset="3706">
+              <caret line="206" column="85" selection-start-line="206" selection-start-column="85" selection-end-line="206" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -114,8 +114,8 @@
       <file leaf-file-name="productList.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/productList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8333334" vertical-offset="7194" max-vertical-offset="9061">
-              <caret line="429" column="0" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
+            <state vertical-scroll-proportion="-3.7222223" vertical-offset="3777" max-vertical-offset="9061">
+              <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -197,13 +197,13 @@
         <option value="$PROJECT_DIR$/public/controllers/sportsStore.js" />
         <option value="$PROJECT_DIR$/public/views/app.html" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/public/services/urlService.js" />
-        <option value="$PROJECT_DIR$/db/schemas.js" />
         <option value="$PROJECT_DIR$/public/controllers/productDetailsController.js" />
         <option value="$PROJECT_DIR$/public/views/productDetails.html" />
         <option value="$PROJECT_DIR$/public/views/productList.html" />
         <option value="$PROJECT_DIR$/public/views/editorView.html" />
         <option value="$PROJECT_DIR$/public/controllers/productListControllers.js" />
+        <option value="$PROJECT_DIR$/db/schemas.js" />
+        <option value="$PROJECT_DIR$/public/services/urlService.js" />
       </list>
     </option>
   </component>
@@ -680,22 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schemas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="969">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/app.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-57.24074" vertical-offset="5171" max-vertical-offset="9622">
@@ -738,14 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/productList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8333334" vertical-offset="7194" max-vertical-offset="9061">
-          <caret line="429" column="0" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/controllers/sportsStore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-209.46428" vertical-offset="918" max-vertical-offset="7140">
@@ -774,8 +750,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/controllers/productListControllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41282895" vertical-offset="3047" max-vertical-offset="3706">
-          <caret line="194" column="33" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3047" max-vertical-offset="3706">
+          <caret line="206" column="85" selection-start-line="206" selection-start-column="85" selection-end-line="206" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/productList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7222223" vertical-offset="3777" max-vertical-offset="9061">
+          <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schemas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="969">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/services/urlService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.082125604" vertical-offset="0" max-vertical-offset="621">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
           <folding />
         </state>
       </provider>

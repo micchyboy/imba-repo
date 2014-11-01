@@ -1,6 +1,6 @@
 angular.module('sportsStore')
-    .constant('domain','http://localhost:3000')
-//    .constant('domain','http://imba-app.herokuapp.com')
+//    .constant('domain','http://localhost:3000')
+    .constant('domain','http://imba-app.herokuapp.com')
     .constant('api','/some/api/info')
     .service('urls',function(domain,api, $routeParams){
         this.getDataUrl = function(username){
