@@ -141,14 +141,29 @@ app.get('/', function(req, res){
 })
 
 
+function validateCredentials(req, res, next){
+    var user = req.body.username;
+    console.log("Signing up username: " + user);
+    if(!user){
+        res.status(500).send(new Error("There's an error in server. " +
+            "Please make sure you follow right format and dont manually remove the validations!").message);
+    }
+    else if(user.search("^[a-zA-Z0-9]*$") == -1){
+        console.log("Remove special characters in username");
+        res.status(500).send(new Error("Remove special characters in username").message);
+    }
+    else{
+        return next();
+    }
+}
 
-app.post('/api/signup', function (req, res) {
+app.post('/api/signup', validateCredentials, function (req, res) {
     console.log("Sign UP!!")
     var deferred = Q.defer();
 
-//        console.log(req.headers)
+    var user = req.body.username;
 
-    User.find({ username: req.body.username }, function (err, data) {
+    User.find({ username: user }, function (err, data) {
         if (err) {
             deferred.reject(err);
         }

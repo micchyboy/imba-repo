@@ -270,6 +270,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             link: function (scope, elem, attrs) {
                 elem.on("click change", function (e) {
                     var value = e.type == "click" ? e.target.textContent.trim() : scope.userAction;
+                    scope.userAction = "Action";
                     if (value == "Log In") {
                         scope.showSignUpForm = false;
                     }
