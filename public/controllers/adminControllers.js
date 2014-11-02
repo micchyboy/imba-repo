@@ -1,6 +1,7 @@
 angular.module("sportsStore")
     .controller("authCtrl", function ($scope, $http, $location, urls, authService, $timeout) {
         $scope.authenticate = function (user, pass) {
+            $scope.startLoadingImage();
             authService.authenticateUser($scope, user, pass)
                 .then(function (data) {
                     console.log("Z POWER OF PROMISES!! THE FUCKING DATA: " + data);
@@ -14,10 +15,14 @@ angular.module("sportsStore")
                 },
                 function (error) {
                     $scope.authenticationError = error;
+                })
+                .finally(function(){
+                    $scope.endLoadingImage();
                 });
         }
 
         $scope.signUp = function () {
+            $scope.startLoadingImage();
             $scope.accountCreated = false;
             console.log("Signing up!")
             $http({
@@ -41,6 +46,8 @@ angular.module("sportsStore")
             }).error(function (error) {
                 console.log("Error is: " + error);
                 $scope.signupError = error;
+            }).finally(function(){
+                $scope.endLoadingImage();
             });
         }
 

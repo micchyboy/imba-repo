@@ -129,6 +129,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
 
         $scope.logout = function () {
+            $scope.startLoadingImage();
             console.log("Logging out..")
             authService.logOut().then(function (data) {
                 authService.removeData("user");
@@ -147,7 +148,9 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             }, function (error) {
                 console.log("Error logging out..");
                 $scope.authenticationError = error;
-            });
+            }).finally(function(){
+                $scope.endLoadingImage();
+            });;
         }
 
         $scope.redirectPage = function (path) {
