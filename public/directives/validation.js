@@ -84,12 +84,14 @@ angular.module("sportsStore")
 
                 $scope.$watch("signForm.$error", function () {
                     $scope.validation = [
-                        {priority: 1, error: $scope.signForm.$error.pattern },
-                        {priority: 2, error: $scope.signForm.$error.required },
-                        {priority: 3, error: $scope.signForm.$error.email }
+                        {priority: 1, error: $scope.signForm.username.$error.pattern },
+                        {priority: 2, error: $scope.signForm.$error.email },
+                        {priority: 3, error: $scope.signForm.phone.$error.pattern },
+                        {priority: 4, error: $scope.signForm.$error.required }
                     ];
 //                    if(value !== oldValue) {
                     var priority = $scope.getError();
+
 
                     if (priority == 1) {
                         $elem.addClass("alert-danger");
@@ -97,11 +99,16 @@ angular.module("sportsStore")
                     }
                     else if (priority == 2) {
                         $elem.addClass("alert-danger");
-                        $elem.html("Please fill up required fields");
+                        $elem.html("Please enter correct email format");
+
                     }
                     else if (priority == 3) {
                         $elem.addClass("alert-danger");
-                        $elem.html("Please enter correct email format");
+                        $elem.html("Please enter numbers only for phone number");
+                    }
+                    else if (priority == 4) {
+                        $elem.addClass("alert-danger");
+                        $elem.html("Please fill up required fields");
                     }
                     else {
                         $elem.removeClass("alert-danger");

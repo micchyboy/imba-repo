@@ -197,7 +197,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             $timeout(function () {
                 $(".notification-danger").slideUp();
             }, duration);
-        }
+        };
 
         $scope.isProduct = function () {
             var mode = $scope.util.mode;
@@ -205,31 +205,39 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 return true
             }
             return false;
-        }
+        };
 
         $scope.convertToActualSize = function (thumbnail) {
             var thumbPath = "/images/thumbnails";
             return thumbnail.replace(thumbPath, "/images/actual-size");
-        }
+        };
 
         $scope.convertToGallerySize = function (thumbnail) {
             var thumbPath = "/images/thumbnails";
             return thumbnail.replace(thumbPath, "/images/gallery");
-        }
+        };
 
         $scope.convertToThumbnailSize = function (gallery) {
             var galleryPath = "/images/gallery";
             return gallery.replace(galleryPath, "/images/thumbnails");
-        }
+        };
 
         $scope.hasNoProduct = function () {
             return $scope.data.products && $scope.data.products.length == 0
                 && $scope.util.mode == 'product' && $scope.isUserOwned();
-        }
+        };
 
         $scope.getViewport = function () {
             return document.documentElement.clientWidth;
-        }
+        };
+
+        $scope.numberWithDecimalPattern = function () {
+            return new RegExp("^[0-9]+[.]?[0-9]*$");
+        };
+
+        $scope.numberPattern = function () {
+            return new RegExp("^[0-9]+$");
+        };
 
         //for sliding content
         var oldLocation = '';

@@ -77,13 +77,6 @@ angular.module("sportsStore")
             $scope.currentProduct.details = [];
         }
 
-        $scope.numberWithDecimalPattern = function () {
-            return new RegExp("^[0-9]+[.]?[0-9]*$");
-        };
-
-        $scope.numberPattern = function () {
-            return new RegExp("^[0-9]+$");
-        };
 
         //TODO: not used, logic moved to server to append "- Copy" on duplicates
         $scope.renameDuplicate = function () {
