@@ -13,9 +13,6 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             templateUrl: "/views/productList.html",
             resolve: resolve
         });
-        /*$routeProvider.when("/details", {
-         templateUrl: "/views/productDetails.html"
-         });*/
         $routeProvider.when("/:username/editor", {
             templateUrl: "/views/editorView.html",
             resolve: resolve
@@ -24,14 +21,28 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             templateUrl: "/views/editorView.html",
             resolve: resolve
         });
-        /*$routeProvider.when("/home", {
-         templateUrl: "/views/homePage.html",
-         resolve: resolve
-         });*/
-        /*$routeProvider.otherwise({
-         redirectTo: "/productss/:username"
-         });*/
     })
+    //TODO: might use global loading
+    /*.config(function($provide) {
+     $provide.decorator('$q', ['$delegate', '$rootScope', function($delegate, $rootScope) {
+     var pendingPromisses = 0;
+     $rootScope.$watch(
+     function() { return pendingPromisses > 0; },
+     function(loading) { $rootScope.loading = loading; }
+     );
+     var $q = $delegate;
+     var origDefer = $q.defer;
+     $q.defer = function() {
+     var defer = origDefer();
+     pendingPromisses++;
+     defer.promise.finally(function() {
+     pendingPromisses--;
+     });
+     return defer;
+     };
+     return $q;
+     }]);
+     })*/
     .run(function ($templateCache, $http) {
         $http.get('/views/adminLogin.html', {cache: $templateCache});
     })
@@ -79,6 +90,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                     console.log(data.products);
                     $scope.data.products = data.products;
                     $scope.data.phone = data.phone;
+
                 })
                 .error(function (error) {
                     $scope.data.error = error;
@@ -94,8 +106,26 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             }
 
             $scope.data.error = "";
+
             $scope.getProducts();
-        })
+
+            $scope.endLoadingImage();
+        });
+
+        $scope.$on('LOAD', function () {
+            $scope.loading = true;
+        });
+        $scope.$on('UNLOAD', function () {
+            $scope.loading = false;
+        });
+
+        $scope.startLoadingImage = function () {
+            $scope.$emit("LOAD");
+        }
+
+        $scope.endLoadingImage = function () {
+            $scope.$emit("UNLOAD");
+        }
 
 
         $scope.logout = function () {
@@ -123,6 +153,10 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
         $scope.redirectPage = function (path) {
 //            $scope.util.currentProduct = {};
             var username = $scope.data.user.username ? $scope.data.user.username : $routeParams["username"];
+
+            if ($location.path() != ("/" + username) || path) {
+                $scope.startLoadingImage();
+            }
             $location.path("/" + username + path);
         }
 
@@ -269,6 +303,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             restrict: "EA",
             link: function (scope, elem, attrs) {
                 elem.on("click change", function (e) {
+                    scope.startLoadingImage();
                     var value = e.type == "click" ? e.target.textContent.trim() : scope.userAction;
                     scope.userAction = "Action";
                     if (value == "Log In") {
@@ -289,6 +324,9 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                     $('#myModal').modal();
                     $('#myModal').on('shown.bs.modal', function () {
                         $('#myModal .modal-body').html(listElem);
+                        scope.$apply(function () {
+                            scope.endLoadingImage();
+                        })
                     });
                     $('#myModal').on('hidden.bs.modal', function () {
                         $('#myModal').off('shown.bs.modal');
@@ -313,34 +351,34 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 var listElem = angular.element(content);
 
 
-                var header = '<div class="modal-header">'+
-                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-                                '<h4 class="modal-title">Search</h4>'+
-                            '</div>';
+                var header = '<div class="modal-header">' +
+                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                    '<h4 class="modal-title">Search</h4>' +
+                    '</div>';
 
                 var body = angular.element('<div class="modal-body">');
 
 
                 var table = angular.element("<table>");
-                var search = '<tr>'+
-                    '<td>Location:</td>'+
-                    '<td>' + listElem[0].querySelector(".search-location").outerHTML + '</td>'+
+                var search = '<tr>' +
+                    '<td>Location:</td>' +
+                    '<td>' + listElem[0].querySelector(".search-location").outerHTML + '</td>' +
                     '</tr>';
-                var minPrice = '<tr>'+
-                    '<td>Minimum Price:</td>'+
-                    '<td>' + listElem[0].querySelector(".search-min-price").outerHTML + '</td>'+
+                var minPrice = '<tr>' +
+                    '<td>Minimum Price:</td>' +
+                    '<td>' + listElem[0].querySelector(".search-min-price").outerHTML + '</td>' +
                     '</tr>';
-                var maxPrice = '<tr>'+
-                    '<td>Maximum Price:</td>'+
-                    '<td>' + listElem[0].querySelector(".search-max-price").outerHTML + '</td>'+
+                var maxPrice = '<tr>' +
+                    '<td>Maximum Price:</td>' +
+                    '<td>' + listElem[0].querySelector(".search-max-price").outerHTML + '</td>' +
                     '</tr>';
-                var sortBy = '<tr>'+
-                    '<td>Sort By:</td>'+
-                    '<td>' + listElem[0].querySelector(".prod-sorter").outerHTML + '</td>'+
+                var sortBy = '<tr>' +
+                    '<td>Sort By:</td>' +
+                    '<td>' + listElem[0].querySelector(".prod-sorter").outerHTML + '</td>' +
                     '</tr>';
 
-                var footer = '<div class="modal-footer">'+
-                    '<button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>'+
+                var footer = '<div class="modal-footer">' +
+                    '<button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>' +
                     '</div>';
 
                 table.append(search).append(minPrice).append(maxPrice).append(sortBy);
@@ -352,7 +390,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
                 var compileFn = $compile(container);
                 compileFn($scope);
-                $elem.on("click", function(){
+                $elem.on("click", function () {
                     $('#myModalContentOnly').modal();
                     $('#myModalContentOnly').on('shown.bs.modal', function () {
                         $('#myModalContentOnly .modal-content').html(container[0]);
@@ -363,7 +401,6 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                         $('#myModalContentOnly').off('hidden.bs.modal');
                     });
                 })
-
 
 
             }

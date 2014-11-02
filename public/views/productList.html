@@ -392,11 +392,11 @@ select, a {
                             <div id="item-options" ng-if="isUserOwned()">
                                 <div>
                                     <input type="image" src="/images/icons/edit-icon.png"
-                                           ng-click="editProduct(item);"/>
+                                           ng-click="editProduct(item);" stop-event/>
                                 </div>
                                 <div>
                                     <input type="image" src="/images/icons/delete-icon.png"
-                                           delete-product-confirmation/>
+                                           delete-product-confirmation stop-event/>
                                 </div>
                             </div>
                         </div>

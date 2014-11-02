@@ -68,6 +68,8 @@ angular.module("sportsStore")
         }
 
         $scope.$watch("util.currentProduct", function () {
+            $scope.endLoadingImage();
+
             (function (data, multiples) {
                 var temp = angular.copy(data);
                 var result = [];

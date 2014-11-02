@@ -138,6 +138,31 @@ angular.module("sportsStore")
             initializeCurrentProduct();
         }
 
+        $scope.$watch("selectedPrimary",function(){
+            if ($scope.selectedPrimary) {
+                $scope.detailsForm.$setValidity("primaryImage", true);
+            }
+            else {
+                $scope.detailsForm.$setValidity("primaryImage", false);
+            }
+        });
+
+        $scope.setNewPrimary = function (filename) {
+            $scope.currentProduct.primaryImage = null;
+            $scope.primaryImage = filename;
+
+            $scope.selectedPrimary = filename;
+        }
+
+        $scope.setExistingPrimary = function (item) {
+            $scope.primaryImage = null;
+            $scope.currentProduct.primaryImage = $scope.convertToThumbnailSize(item.path);
+
+            var filename = item.path.substring(item.path.lastIndexOf("/") + 1, item.path.length);
+            $scope.selectedPrimary = filename;
+
+        }
+
         $scope.isPrimary = function (flag, arg) {
             if (!$scope.selectedPrimary) {
                 var imagePath = $scope.currentProduct.primaryImage;
@@ -147,32 +172,6 @@ angular.module("sportsStore")
                 }
                 $scope.selectedPrimary = filename;
             }
-
-            $scope.setNewPrimary = function (filename) {
-                $scope.currentProduct.primaryImage = null;
-                $scope.primaryImage = filename;
-
-                $scope.selectedPrimary = filename;
-            }
-
-            $scope.setExistingPrimary = function (item) {
-                $scope.primaryImage = null;
-                $scope.currentProduct.primaryImage = $scope.convertToThumbnailSize(item.path);
-
-                var filename = item.path.substring(item.path.lastIndexOf("/") + 1, item.path.length);
-                $scope.selectedPrimary = filename;
-
-            }
-
-//            if ($scope.selectedFiles && $scope.selectedFiles.length > 0 && !$scope.currentProduct.primaryImage) {
-            if ($scope.selectedPrimary) {
-                $scope.detailsForm.$setValidity("primaryImage", true);
-            }
-            else {
-                $scope.detailsForm.$setValidity("primaryImage", false);
-            }
-//            }
-
 
             if (flag == "N") {
                 return $scope.primaryImage == arg;
@@ -189,6 +188,8 @@ angular.module("sportsStore")
 
 
         $scope.updateProduct = function () {
+            $scope.startLoadingImage();
+
             $http({
                 url: urls.updateUrl,
                 method: "PUT",
@@ -256,18 +257,20 @@ angular.module("sportsStore")
                 var cleanUpVar = $scope.$on("$routeChangeStart", function () {
                     $(".update-success").slideUp();
                     cleanUpVar();
-                })
+                });
 //                $scope.getProducts();
                 $scope.util.currentProduct = {};
 
             }).catch(function (error) {
                 console.log("Error is: " + error);
                 $scope.authenticationError = error;
+            }).finally(function(){
+                $scope.endLoadingImage();
             });
         }
 
         $scope.saveProduct = function () {
-
+            $scope.startLoadingImage();
             $http({
                 url: urls.createUrl,
                 method: "POST",
@@ -336,13 +339,15 @@ angular.module("sportsStore")
                 var cleanUpVar = $scope.$on("$routeChangeStart", function () {
                     $(".create-success").slideUp();
                     cleanUpVar();
-                })
+                });
 //                $scope.getProducts();
                 $scope.util.currentProduct = {};
 
             }).catch(function (error) {
                 console.log("Error is: " + error);
                 $scope.authenticationError = error;
+            }).finally(function(){
+                $scope.endLoadingImage();
             });
         }
 

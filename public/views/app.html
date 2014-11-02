@@ -21,6 +21,7 @@
 <script src="/controllers/productDetailsController.js"></script>
 
 <script src="/directives/validation.js"></script>
+<script src="/directives/utility.js"></script>
 
 <script src="/services/smoothScrollService.js"></script>
 <script src="/services/sessionStorageService.js"></script>
@@ -118,14 +119,6 @@ body {
     display: inline;
     /*margin: 0px 0 0 -35%;*/
     /*left: 50%;*/
-}
-
-.user-info > * {
-    height: 50px;
-    color: #ffffff;
-    padding: 10px 12px;
-    font-size: 25px;
-    letter-spacing: 2px;
 }
 
 
@@ -263,6 +256,48 @@ body {
     display: none;
 }
 
+/*.rotate{
+    -moz-transition: all 0.6s ease-in-out;
+    -webkit-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+}
+
+.rotate {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}*/
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotate
+{
+    -webkit-animation-name:             rotate;
+    -webkit-animation-duration:         0.5s;
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+.user-info > * {
+    /*height: 50px;*/
+    color: #ffffff;
+    /*padding: 10px 12px;*/
+    padding-top: 5px;
+    /*font-size: 25px;*/
+    letter-spacing: 2px;
+}
+
 @media (min-width: 0px) and (max-width: 306px){
     .user-name {
         /*font-size: .8em;
@@ -302,24 +337,35 @@ body {
 
     .user-details {
         font-weight: bold;
-        font-size: 1.1em;
-        width: 100%;
+        font-size: .9em;
+        width: 80%;
+        padding-top: 15px;
     }
 
 
 
 }
 
+@media (min-width: 447px){
+    .user-details {
+        width: 70%;
+        font-size: 1.2em;
+    }
+}
+
 @media (min-width: 630px) {
 
     .user-name {
-        display: inline;
-        width: 50%;
+        display: inline-block;
+        padding-top: 15px;
+        font-size: 1.5em;
+        width: 35%;
+        padding-left: 5px;
     }
 
     .user-details {
         font-size: 1.1em;
-        width: 50%;
+        width: 45%;
         text-align: right;
     }
 
@@ -333,6 +379,9 @@ body {
 }
 
 @media (min-width: 810px) {
+    .user-name {
+        font-size: 1.5em;
+    }
 
     .user-details {
         font-size: 1.4em;
@@ -356,9 +405,9 @@ body {
 
     <header class="navbar navbar-inverse navbar-fixed-top">
         <nav class="container user-info">
-            <div class="user-name pull-left">
-                <img src="/images/icons/home.png" height="40px" width="40px" class="trademark-icon">
-
+            <img src="/images/icons/home.png" height="40px" width="40px" class="trademark-icon pull-left"
+                 ng-class="{'rotate': loading}">
+            <div class="user-name" class="pull-left">
                 <span> Real Estate App </span>
             </div>
 
@@ -498,6 +547,8 @@ body {
                 </form>
             </div>
         </div>
+
+        <!--<span ng-show="loading" class="global-spinner"><img src="/images/gif/md-loading-spinner.gif"></span>-->
 
         <div class="alert alert-danger" ng-show="data.error">
             Error ({{data.error}}).

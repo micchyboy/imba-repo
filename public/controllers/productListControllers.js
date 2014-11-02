@@ -45,8 +45,10 @@ angular.module("sportsStore")
         }
 
         $scope.showDetailsView = function (item) {
-            $scope.util.currentProduct = item;
-
+            if($scope.util.currentProduct._id != item._id) {
+                $scope.util.currentProduct = item;
+                $scope.startLoadingImage();
+            }
 //            $scope.gotoElement('main');
         }
 
@@ -90,6 +92,7 @@ angular.module("sportsStore")
         }
 
         $scope.deleteProduct = function (item) {
+            $scope.startLoadingImage();
             $http({
                 url: urls.deleteUrl,
                 method: "POST",
@@ -104,6 +107,8 @@ angular.module("sportsStore")
                     $scope.util.currentProduct = {};
                 }
                 $scope.data.products.splice($scope.data.products.indexOf(item), 1);
+
+                $scope.endLoadingImage();
 //                $route.reload();
             })
         }
