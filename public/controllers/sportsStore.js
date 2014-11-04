@@ -311,7 +311,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
                 return hoursStr;
             }
             else if (difference_days == 1) {
-                return "Added 1 day ago"
+                return "Added today"
             }
             else {
                 return "Added " + difference_days + " days ago";
