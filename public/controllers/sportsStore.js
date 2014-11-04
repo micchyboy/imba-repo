@@ -85,7 +85,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
          }
          });*/
         $scope.getProducts = function () {
-            $http.get(urls.getDataUrl($routeParams["username"]))
+            return $http.get(urls.getDataUrl($routeParams["username"]))
                 .success(function (data) {
                     console.log(data.products);
                     $scope.data.products = data.products;
@@ -107,9 +107,14 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
             $scope.data.error = "";
 
-            $scope.getProducts();
-
-            $scope.endLoadingImage();
+            if($scope.util.mode == 'product'){
+                $scope.getProducts().finally(function(){
+                    $scope.endLoadingImage();
+                });
+            }
+            else{
+                $scope.endLoadingImage();
+            }
         });
 
         $scope.$on('LOAD', function () {
@@ -127,6 +132,11 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
             $scope.$emit("UNLOAD");
         }
 
+        $scope.showProduct = function () {
+            $scope.util.mode = 'product';
+            $scope.util.currentProduct = {};
+            $scope.redirectPage("");
+        }
 
         $scope.logout = function () {
             $scope.startLoadingImage();
@@ -144,7 +154,7 @@ angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angular
 
                 $scope.data.user = {};
 
-                $scope.redirectPage("");
+                $scope.showProduct();
             }, function (error) {
                 console.log("Error logging out..");
                 $scope.authenticationError = error;

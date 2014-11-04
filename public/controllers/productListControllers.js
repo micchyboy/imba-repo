@@ -64,12 +64,6 @@ angular.module("sportsStore")
             }
         }
 
-        $scope.showProduct = function () {
-            $scope.util.mode = 'product';
-            $scope.util.currentProduct = {};
-            $scope.redirectPage("");
-        }
-
         $scope.editProduct = function (item) {
             $scope.util.mode = 'update';
             $scope.redirectPage("/editor");
