@@ -98,6 +98,8 @@ angular.module("sportsStore")
                 });
         }
 
+        var initial = true;
+
         $scope.$on("$routeChangeSuccess", function () {
 //            alert("Username is: " + $routeParams["username"]);
             var isAuthenticated = authService.getData("isAuthenticated");
@@ -107,6 +109,11 @@ angular.module("sportsStore")
             }
 
             $scope.data.error = "";
+
+            if(initial){
+                $scope.startLoadingImage();
+                initial = false;
+            }
 
             if($scope.util.mode == 'product'){
                 $scope.getProducts().finally(function(){
