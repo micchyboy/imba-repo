@@ -7,7 +7,8 @@ var resolve = {
     }
 };
 
-angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angularFileUpload"])
+//angular.module("sportsStore", ["customFilters", "ngRoute", "ngAnimate", "angularFileUpload"])
+angular.module("sportsStore")
     .config(function ($routeProvider) {
         $routeProvider.when("/:username", {
             templateUrl: "/views/productList.html",

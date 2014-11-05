@@ -1,0 +1,41 @@
+module.exports = function(grunt) {
+
+    // 1. All configuration goes here 
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
+        concat: {
+            dist: {
+                src: [
+                    'public/lib/angular.js',
+                    'public/lib/jquery-1.10.2.min.js',
+                    'public/lib/bootstrap.min.js',
+                    'public/lib/ngmodules/*',
+                    'public/declarations.js',
+                    'public/controllers/*.js',
+                    'public/directives/*.js',
+                    'public/filters/*.js',
+                    'public/services/*.js'
+                ],
+                dest: 'public/build/production.js'
+            }
+        },
+        uglify: {
+            options: {
+                mangle: false
+            },
+            build: {
+                src: 'public/build/production.js',
+                dest: 'public/build/production.min.js'
+            }
+        }
+    });
+
+    // 3. Where we tell Grunt we plan to use this plug-in.
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
+    grunt.registerTask('default', ['concat', 'uglify']);
+
+};
