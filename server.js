@@ -1,7 +1,7 @@
 /*var config = {
  test: 'mongodb://localhost/re_db'
  };*/
-
+var serverConfig = require('./serverConfig.js');
 var express = require('express');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
@@ -651,9 +651,8 @@ app.get('/api/products/:username', function (req, res) {
             }
         })
 });
-
-var schemas = require('./db/schemas.js');
-var User = new schemas.getUserModel();
+var schemas = require('./db/schemas.js')(serverConfig);
+var User = schemas.getUserModel();
 require('./routes/products-rest.js')(app);
 
 
