@@ -15,7 +15,9 @@ angular.module("sportsStore")
                 $scope.photoInterval.start();
             }
 
-            $scope.currentImage = $scope.convertToGallerySize($scope.util.currentProduct.primaryImage);
+            if($scope.util.currentProduct.primaryImage) {
+                $scope.currentImage = $scope.convertToGallerySize($scope.util.currentProduct.primaryImage);
+            }
         });
 
 //        $scope.currentProductImages = $scope.util.currentProduct.thumbnailImages;
